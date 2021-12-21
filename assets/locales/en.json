@@ -1,0 +1,52 @@
+{
+  "localization": "en",
+  "location_language": "English",
+  "select_language": "Select language",
+
+  "welcome": "Welcome",
+  "english": "English",
+  "vietnameses": "Pashto",
+
+  "sign_in": "Sign In",
+  "sign_up": "Sign Up",
+  "email_or_phone": "Mail or Phone",
+  "password": "Password",
+  "Dont_have_an_account": "Don't have an account? ",
+  "forgot_password": "Forgot Password",
+
+  "password_recovery": "Password recovery",
+  "forgot_password_attention": "Please enter the phone number or email associated with your account to recover your password.",
+
+  "account_notification": "Account notification",
+  "account_information": "Account information",
+  "bank_account_link": "Bank account link",
+  "identity_verification": "Identity verification",
+  "refer_friends": "Refer friends",
+  "setting": "Setting",
+  "contact_and_feedback": "Contact and feedback",
+  "trading_guide": "Trading guide",
+  "declaration_and_agreement": "Declaration and agreement",
+  "about_us": "About us",
+
+  "title_del_message": "Are you sure you want to delete?",
+
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+
+  "individual": "Individual",
+
+  "language": "Language",
+  "security_Settings": "Security settings",
+  "notification_settings": "Notification settings",
+  "clear_cache": "Clear cache",
+  "version_number": "Version number",
+  "log_out": "Log out",
+
+  "change_password": "Change password",
+  "change_the_login_password": "Change the login password",
+  "current_password": "Current password:",
+  "new_password": "New password:",
+  "re_enter_new_password": "Re-enter the new password:",
+  "change_password_note": "The new password must be between 8 and 16 characters, and use a combination of numbers, Letters (uppercase or lowercase) and/or special characters."
+
+}

@@ -1,0 +1,52 @@
+{
+  "localization": "vi",
+  "location_language": "Tiếng việt",
+  "select_language": "Chọn ngôn ngữ",
+
+  "welcome": " xin chao",
+  "english": "xin chao",
+  "vietnameses": "vietnameses",
+
+  "sign_in": "Đăng nhập",
+  "sign_up": "Đăng ký",
+  "email_or_phone": "Email hoặc số điện thoại",
+  "password": "Mật khẩu",
+  "Dont_have_an_account": "Bạn chưa có tài khoản? ",
+  "forgot_password": "Quyên mật khẩu",
+
+  "password_recovery": "Khôi phục mật khẩu",
+  "forgot_password_attention": "Vui lòng nhập số điện thoại hoặc email liên kết với tài khoản của bạn để khôi phục mật khẩu.",
+
+  "account_notification": "Thông báo tài khoản",
+  "account_information": "Thông tin tài khoản",
+  "bank_account_link": "Liên kết tài khoản ngân hàng",
+  "identity_verification": "Xác minh danh tính",
+  "refer_friends": "Giới thiệu bạn bè",
+  "setting": "Cài đặt",
+  "contact_and_feedback": "Liên hệ và phản hồi",
+  "trading_guide": "Hướng dẫn giao dịch",
+  "declaration_and_agreement": "Tuyên bố và thỏa thuận",
+  "about_us": "Về chúng tôi",
+
+  "title_del_message": "Bạn có chắc chắn muốn xóa không?",
+
+  "cancel": "Hủy bỏ",
+  "confirm": "Xác nhận",
+
+  "individual": "Cá nhân",
+
+  "language": "Ngôn ngữ",
+  "security_Settings": "Cài đặt bảo mật",
+  "notification_settings": "Cài đặt thông báo",
+  "clear_cache": "Xóa bộ nhớ",
+  "version_number": "Phiên bản số",
+  "log_out": "Đăng xuất",
+
+  "change_password": "Thay đổi mật khẩu",
+  "change_the_login_password": "Thay đổi mật khẩu đăng nhập",
+  "current_password": "Mật khẩu hiện tại:",
+  "new_password": "Mật khẩu mới:",
+  "re_enter_new_password": "Nhập lại MK mới:",
+  "change_password_note": "Mật khẩu mới phải từ 8 đến 16 ký tự, và sử dụng kết hợp các số, Chữ cái(Chữ hoa hoặc chữ thường) và/hoặc các ký tự đặc biệt."
+
+}
