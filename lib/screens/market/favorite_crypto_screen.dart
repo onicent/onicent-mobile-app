@@ -1,5 +1,5 @@
-import 'package:bitnet/models/market/favorite.dart';
-import 'package:bitnet/services/http_api.dart';
+import 'package:onicent/models/market/favorite.dart';
+import 'package:onicent/services/http_api.dart';
 
 import '../../models/market/list_crypto_model.dart';
 import 'package:flutter/material.dart';

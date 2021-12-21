@@ -1,9 +1,9 @@
-import 'package:bitnet/screens/forgot_password_screen.dart';
-import 'package:bitnet/screens/register_screen.dart';
-import 'package:bitnet/widgets/main_container.dart';
-import 'package:bitnet/widgets/route_render.dart';
+import 'package:onicent/screens/forgot_password_screen.dart';
+import 'package:onicent/screens/register_screen.dart';
+import 'package:onicent/widgets/main_container.dart';
+import 'package:onicent/widgets/route_render.dart';
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 import '../utilities/locales/flutter_locales.dart';
 
 import 'package:http/http.dart';

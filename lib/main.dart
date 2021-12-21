@@ -1,4 +1,4 @@
-import 'package:bitnet/screens/splash_screen.dart';
+import 'package:onicent/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import './utilities/locales/flutter_locales.dart';
 

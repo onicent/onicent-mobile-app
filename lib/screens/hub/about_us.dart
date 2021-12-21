@@ -5,7 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 
 class AboutUsScreen extends StatelessWidget {
   final String _title = 'Giới Thiệu Sơ Lược Về Công Ty';

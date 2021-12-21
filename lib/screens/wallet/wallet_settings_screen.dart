@@ -1,4 +1,4 @@
-import 'package:bitnet/widgets/widgets.dart';
+import 'package:onicent/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';

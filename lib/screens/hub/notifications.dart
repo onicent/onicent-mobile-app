@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../utilities/locales/flutter_locales.dart';
 
-import 'package:bitnet/widgets/empty_screen.dart';
-import 'package:bitnet/widgets/dialog_type.dart';
+import 'package:onicent/widgets/empty_screen.dart';
+import 'package:onicent/widgets/dialog_type.dart';
 
 import '../../widgets/route_render.dart';
 

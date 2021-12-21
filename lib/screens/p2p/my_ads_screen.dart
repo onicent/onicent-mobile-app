@@ -1,6 +1,6 @@
 import 'my_ads_add_item.dart';
-import 'package:bitnet/screens/p2p/my_ads_buy_screen.dart';
-import 'package:bitnet/screens/p2p/my_ads_sell_screen.dart';
+import 'package:onicent/screens/p2p/my_ads_buy_screen.dart';
+import 'package:onicent/screens/p2p/my_ads_sell_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 

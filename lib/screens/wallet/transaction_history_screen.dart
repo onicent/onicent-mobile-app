@@ -1,4 +1,4 @@
-import 'package:bitnet/screens/wallet/transaction_history_detail_screen.dart';
+import 'package:onicent/screens/wallet/transaction_history_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';

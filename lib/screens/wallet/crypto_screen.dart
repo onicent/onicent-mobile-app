@@ -1,5 +1,5 @@
-import 'package:bitnet/screens/wallet/crypto_swap_screen.dart';
-import 'package:bitnet/screens/wallet/transaction_history_screen.dart';
+import 'package:onicent/screens/wallet/crypto_swap_screen.dart';
+import 'package:onicent/screens/wallet/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 import 'crypto_deposit_screen.dart';

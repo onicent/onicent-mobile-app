@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
-import 'package:bitnet/widgets/menu_item.dart';
+import 'package:onicent/widgets/empty_screen.dart';
+import 'package:onicent/widgets/menu_item.dart';
 
 class AccountInformationScreen extends StatefulWidget {
   const AccountInformationScreen({Key? key}) : super(key: key);

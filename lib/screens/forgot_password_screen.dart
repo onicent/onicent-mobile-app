@@ -1,4 +1,4 @@
-import 'package:bitnet/widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/locales/flutter_locales.dart';
 

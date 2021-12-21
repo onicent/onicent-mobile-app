@@ -5,10 +5,10 @@ import '../../widgets/widgets.dart';
 
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
-import 'package:bitnet/utilities/chart/chart_style.dart';
-import 'package:bitnet/utilities/chart/chart_translations.dart';
-import 'package:bitnet/utilities/chart/flutter_k_chart.dart';
-import 'package:bitnet/utilities/chart/k_chart_widget.dart';
+import 'package:onicent/utilities/chart/chart_style.dart';
+import 'package:onicent/utilities/chart/chart_translations.dart';
+import 'package:onicent/utilities/chart/flutter_k_chart.dart';
+import 'package:onicent/utilities/chart/k_chart_widget.dart';
 
 class CryptoChartScreen extends StatefulWidget {
   const CryptoChartScreen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:bitnet/screens/hub/bank_link.dart';
+import 'package:onicent/screens/hub/bank_link.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';

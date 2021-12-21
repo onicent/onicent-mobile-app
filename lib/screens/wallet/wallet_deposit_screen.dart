@@ -1,4 +1,4 @@
-import 'package:bitnet/screens/wallet/wallet_payment_method_screen.dart';
+import 'package:onicent/screens/wallet/wallet_payment_method_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 

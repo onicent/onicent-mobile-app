@@ -5,7 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 
 class StatementAndAgreementScreen extends StatelessWidget {
   final String _title = 'Điều khoản và chính sách';

@@ -1,5 +1,5 @@
-import 'package:bitnet/models/market/crypto_detail_model.dart';
-import 'package:bitnet/services/fetch_api_crypto_detail.dart';
+import 'package:onicent/models/market/crypto_detail_model.dart';
+import 'package:onicent/services/fetch_api_crypto_detail.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 // import 'crypto_chart_screen.dart';

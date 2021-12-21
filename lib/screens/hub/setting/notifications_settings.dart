@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 
 class NotificationsSettingsScreen extends StatefulWidget {
   const NotificationsSettingsScreen({Key? key}) : super(key: key);

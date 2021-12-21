@@ -1,6 +1,6 @@
-import 'package:bitnet/models/market/list_crypto_model.dart';
-import 'package:bitnet/screens/market/favorite_edit.dart';
-import 'package:bitnet/services/network.dart';
+import 'package:onicent/models/market/list_crypto_model.dart';
+import 'package:onicent/screens/market/favorite_edit.dart';
+import 'package:onicent/services/network.dart';
 
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';

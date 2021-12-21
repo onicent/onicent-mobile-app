@@ -1,7 +1,7 @@
-import 'package:bitnet/widgets/route_render.dart';
+import 'package:onicent/widgets/route_render.dart';
 import 'package:flutter/material.dart';
-import 'package:bitnet/widgets/empty_screen.dart';
-import 'package:bitnet/widgets/menu_item.dart';
+import 'package:onicent/widgets/empty_screen.dart';
+import 'package:onicent/widgets/menu_item.dart';
 
 class ContactAndFeedbackScreen extends StatefulWidget {
   const ContactAndFeedbackScreen({Key? key}) : super(key: key);
