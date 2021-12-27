@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 import 'package:flutter/rendering.dart';
 
 class ReferFriendsScreen extends StatefulWidget {
@@ -28,6 +28,7 @@ class _ReferFriendsScreenState extends State<ReferFriendsScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
+      title: 'Giới thiệu bạn bè',
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(

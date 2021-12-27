@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 
+import 'crypto_deposit_screen.dart';
+import 'crypto_swap_screen.dart';
+import 'crypto_withdraw_screen.dart';
 import 'wallet_settings_screen.dart';
 import 'wallet_deposit_screen.dart';
 import 'wallet_withdraw_screen.dart';
@@ -18,8 +22,11 @@ class _WalletScreenState extends State<WalletScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      iconBack: false,
-      title: 'Ví của tôi',
+      // appBar: AppBar(
+      //   title: Text('WALLET'),
+      //   automaticallyImplyLeading: false,
+      // ),
+      padding: EdgeInsets.all(10.0),
       body: RefreshIndicator(
         onRefresh: () {
           return Future.delayed(
@@ -31,29 +38,28 @@ class _WalletScreenState extends State<WalletScreen> {
         },
         child: ListView(
           children: [
-            Container(
+            GroupItem(
               // height: 120,
-              width: MediaQuery.of(context).size.width,
+              // width: MediaQuery.of(context).size.width,
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 18.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5.0),
-                // border: Border.all(width: 1.0, color: const Color(0xFFEBEBEF)),
-                // border: const Border(
-                //   bottom: BorderSide(width: 1.0, color: Color(0xFFEBEBEF)),
-                // ),
-
-                boxShadow: const [
-                  BoxShadow(color: Color(0xFFF5F1FA), spreadRadius: 0.5),
-                ],
-                image: const DecorationImage(
-                  image: AssetImage('assets/images/cover_large.jpg'),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.bottomLeft,
-                ),
-              ),
-              child: Column(
+              // decoration: BoxDecoration(
+              //   color: Colors.white,
+              //   borderRadius: BorderRadius.circular(5.0),
+              //   // border: Border.all(width: 1.0, color: const Color(0xFFEBEBEF)),
+              //   // border: const Border(
+              //   //   bottom: BorderSide(width: 1.0, color: Color(0xFFEBEBEF)),
+              //   // ),
+              //
+              //   boxShadow: const [
+              //     BoxShadow(color: Color(0xFFF5F1FA), spreadRadius: 0.5),
+              //   ],
+              //   // image: const DecorationImage(
+              //   //   image: AssetImage('assets/images/cover_large.jpg'),
+              //   //   fit: BoxFit.fitWidth,
+              //   //   alignment: Alignment.bottomLeft,
+              //   // ),
+              // ),
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +68,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         'Tài sản ước tính (\$)',
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.black54,
+                          color: Colors.grey,
                         ),
                       ),
                       InkWell(
@@ -80,9 +86,9 @@ class _WalletScreenState extends State<WalletScreen> {
                       Text(
                         '5 000 000 000 000,0',
                         style: TextStyle(
-                          fontSize: 22.0,
+                          fontSize: 24.0,
                           // color: Color(0xFF0F1F5C),
-                          color: Color(0xFF234C93),
+                          color: Color(0xff227b18),
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -95,7 +101,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         'Số dư VNDT',
                         style: TextStyle(
                           fontSize: 15,
-                          color: Colors.black54,
+                          color: Colors.grey,
                         ),
                       ),
                     ],
@@ -107,7 +113,7 @@ class _WalletScreenState extends State<WalletScreen> {
                         '35 000 000,0',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black87,
+                          // color: Colors.black87,
                           fontWeight: FontWeight.w600,
                         ),
                       )
@@ -120,137 +126,200 @@ class _WalletScreenState extends State<WalletScreen> {
                       _itemCard(
                         icon: const Icon(
                           Icons.file_download,
-                          color: Color(0xFF21599C),
+                          // color: Color(0xFF21599C),
                         ),
                         title: 'Nạp tiền',
                         onTap: () {
                           Navigator.of(context)
-                              .push(createRoute(const WalletDepositScreen()));
+                              .push(createRoute( CryptoDepositScreen(address: '0xb8bA36E591FAceE901FfD3d5D82dF491551AD7eF',cryptoName: 'BTC',)));
                         },
                       ),
                       _itemCard(
                         icon: const Icon(
                           Icons.file_upload,
-                          color: Color(0xFF21599C),
+                          // color: Color(0xFF21599C),
                         ),
                         title: 'Rút tiền',
                         onTap: () {
                           Navigator.of(context)
-                              .push(createRoute(const WalletWithdrawScreen()));
+                              .push(createRoute(const CryptoWithdrawScreen()));
                         },
                       ),
                       _itemCard(
                         icon: const Icon(
                           Icons.history,
-                          color: Colors.black54,
+                          // color: Colors.black54,
                         ),
                         title: 'Lịch sử',
                         onTap: () {
                           Navigator.of(context).push(
-                              createRoute(const TransactionHistoryScreen()));
+                              createRoute(const CryptoSwapScreen()));
                         },
                       ),
                     ],
                   ),
                 ],
+            ),
+
+            // SizedBox(
+            //   height: 10.0,
+            // ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 10.0),
+              decoration: BoxDecoration(
+                color: Theme.of(context).backgroundColor,
+                borderRadius: BorderRadius.circular(6.0),
+              ),
+              child: Column(
+                children: [
+                  Item(
+                    height: 65.0,
+                    borderBottom: true,
+                    leading: Icon(
+                      Icons.play_circle_filled,
+                      size: 40.0,
+                      color: Color(0xFF4ACAF3),
+                    ),
+                    title: 'Bộ video hướng dẫn Bộ video hướng dẫn',
+                    subTitle: 'Dành cho người mới bắt đầu.',
+                  ),
+                  Item(
+                    height: 65.0,
+                    borderBottom: true,
+                    leading: Icon(Icons.savings, size: 40.0, color: Colors.blue[700]),
+                    title: 'Nạp VNDT',
+                    subTitle: 'Lãi kép 12% APR.',
+                    onTap: (){
+                      Get.to(WalletDepositScreen());
+                    },
+                  ),
+                  // Item(
+                  //   borderBottom: true,
+                  //
+                  //   leading: Icon(Icons.swap_horizontal_circle_outlined, size: 40.0, color: Color(0xFF181e7b)),
+                  //   title: 'Quy đổi',
+                  //   subTitle: 'Chuyển tới địa chỉ ví khác.',
+                  // ),
+                  Item(
+                    height: 65.0,
+                    leading: Image.asset('assets/icons/ic_bank.png', width: 40.0),
+                    title: 'Rút VNDT về ngân hàng',
+                    subTitle: 'Chuyển tới địa chỉ ví khác.',
+                    onTap: (){
+                      Get.to(WalletWithdrawScreen());
+                    },
+                  ),
+                ],
               ),
             ),
-            Container(
-              height: 1.0,
-              width: MediaQuery.of(context).size.width,
-              color: const Color(0xFFDBEAFF),
-            ),
-            Column(
+            // SizedBox(
+            //   height: 10.0,
+            // ),
+
+            GroupItem(
               children: [
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'usdt.png',
-                  cryptoShortName: 'USDT',
-                  cryptoName: 'Tether',
-                  trailing: Text(
-                    '0.54802 USDT',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.w600
+                SizedBox(height: 15.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: const [
+                        Text(
+                          'Coin Balance',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                            color: Color(0xFF181e7b),
+                          ),
+                        ),
+                        SizedBox(width: 20.0),
+                        Text(
+                          'Bộ sưu tập',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18.0,
+                            color: Color(0xff227b18),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.control_point,
+                        ),
+                        // Switch(
+                        //   value: _setSwitch,
+                        //   onChanged: (bool newValue) {
+                        //     setState(() {
+                        //       _setSwitch = newValue;
+                        //     });
+                        //   },
+                        //   activeColor: Colors.amber,
+                        // ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15.0),
+
+                Item(
+                  height: 70,
+                  title: 'VNDT',
+                  subTitle: 'Prax',
+                  leading: Image.asset('assets/icons/crypto/btc.png', width: 40),
+                  trailing: Text('25000000.02',
+                    style: const TextStyle(
+                      height: 1.3,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0,
+                      // color: Color(0xFF181e7b),
                     ),
                   ),
-                  onTap: (){
-                    Navigator.of(context).push(
-                        createRoute(const CryptoScreen()));
-                  },
+                  borderBottom: true,
                 ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'btc.png',
-                  cryptoShortName: 'BTC',
-                  cryptoName: 'Bitcoin',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600
+                Item(
+                  height: 70,
+                  title: 'OIC',
+                  subTitle: 'Onicent coin',
+                  leading: Image.asset('assets/icons/crypto/xrp.png', width: 40),
+                  trailing: Text('2950.02',
+                    style: const TextStyle(
+                      height: 1.3,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0,
+                      // color: Color(0xFF181e7b),
                     ),
                   ),
+                  borderBottom: true,
                 ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'eth.png',
-                  cryptoShortName: 'ETH',
-                  cryptoName: 'Etherium',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600
+                Item(
+                  height: 70,
+                  title: 'ETH',
+                  subTitle: 'Etherium',
+                  leading: Image.asset('assets/icons/crypto/eth.png', width: 40),
+                  trailing: Text('12.02',
+                    style: const TextStyle(
+                      height: 1.3,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0,
+                      // color: Color(0xFF181e7b),
                     ),
                   ),
+                  borderBottom: true,
                 ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'bch.png',
-                  cryptoShortName: 'BCH',
-                  cryptoName: 'Bitcoin cash',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600
-                    ),
-                  ),
-                ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'ltc.png',
-                  cryptoShortName: 'LTC',
-                  cryptoName: 'Lite coin',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),
-                  ),
-                ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'xrp.png',
-                  cryptoShortName: 'XRP',
-                  cryptoName: 'Ripple',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0
-                    ),
-                  ),
-                ),
-                CryptoItem(
-                  height: 70.0,
-                  cryptoIcon: 'xmr.png',
-                  cryptoShortName: 'XMR',
-                  cryptoName: 'XMR',
-                  trailing: Text(
-                    '0.54802 BTC',
-                    style: TextStyle(
-                        fontSize: 15.0
+                Item(
+                  height: 70,
+                  title: 'BTC',
+                  subTitle: 'Bitcoin',
+                  leading: Image.asset('assets/icons/crypto/usdt.png', width: 40),
+                  trailing: Text('0.02005',
+                    style: const TextStyle(
+                      height: 1.3,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16.0,
+                      // color: Color(0xFF181e7b),
                     ),
                   ),
                 ),
@@ -276,7 +345,7 @@ class _WalletScreenState extends State<WalletScreen> {
         onTap: onTap,
         child: Ink(
           padding: const EdgeInsets.all(6.0),
-          color: Colors.white,
+          // color: Colors.white,
           child: Center(
             child: Column(
               children: [
@@ -284,7 +353,7 @@ class _WalletScreenState extends State<WalletScreen> {
                 Text(
                   '$title',
                   style: const TextStyle(
-                    color: Colors.black54,
+                    // color: Colors.black54,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

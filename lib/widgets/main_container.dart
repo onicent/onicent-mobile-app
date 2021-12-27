@@ -70,9 +70,7 @@ class _MainContainer extends State<MainContainer> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _currentIndex,
-          backgroundColor: Colors.white,
-          selectedItemColor: colorScheme.onSurface,
-          unselectedItemColor: colorScheme.onSurface.withOpacity(.60),
+
           // selectedLabelStyle: textTheme.caption,
           // unselectedLabelStyle: textTheme.caption,
           selectedFontSize: 12.0,
@@ -89,7 +87,6 @@ class _MainContainer extends State<MainContainer> {
               icon: Icon(Icons.home_outlined),
               activeIcon: Icon(
                 Icons.home,
-                color: Colors.blue,
               ),
             ),
             const BottomNavigationBarItem(
@@ -97,7 +94,6 @@ class _MainContainer extends State<MainContainer> {
               icon: Icon(Icons.analytics_outlined),
               activeIcon: Icon(
                 Icons.analytics,
-                color: Colors.blue,
               ),
             ),
             const BottomNavigationBarItem(
@@ -105,7 +101,6 @@ class _MainContainer extends State<MainContainer> {
               icon: Icon(Icons.sync_alt_outlined),
               activeIcon: Icon(
                 Icons.sync_alt,
-                color: Colors.blue,
               ),
             ),
             const BottomNavigationBarItem(
@@ -113,7 +108,6 @@ class _MainContainer extends State<MainContainer> {
               icon: Icon(Icons.account_balance_wallet_outlined),
               activeIcon: Icon(
                 Icons.account_balance_wallet,
-                color: Colors.blue,
               ),
             ),
             BottomNavigationBarItem(
@@ -121,7 +115,6 @@ class _MainContainer extends State<MainContainer> {
               icon: _badge(),
               activeIcon: const Icon(
                 Icons.person_outlined,
-                color: Colors.blue,
               ),
             ),
           ],

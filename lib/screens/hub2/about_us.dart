@@ -5,7 +5,7 @@
 */
 
 import 'package:flutter/material.dart';
-import '../../widgets/empty_screen.dart';
+import 'package:onicent/widgets/empty_screen.dart';
 
 class AboutUsScreen extends StatelessWidget {
   final String _title = 'Giới Thiệu Sơ Lược Về Công Ty';
@@ -33,8 +33,9 @@ class AboutUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
+      title: 'Thông tin về chúng tôi',
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
-      body: ListView(
+      body: Column(
         children: [
           SelectableText(
             _title,

@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:onicent/screens/hub/bank_link.dart';
+// import 'package:onicent/screens/hub/bank_link.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
@@ -25,250 +25,187 @@ class _CryptoWithdrawScreenState extends State<CryptoWithdrawScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      title: 'BTCUSD',
+      appBar: AppBar(
+        title: Text('Rút BTC'),
+      ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 20.0),
+        padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
         child: Column(
           children: [
+            GroupItem(
+              children: [
+                SizedBox(height: 20.0,),
+                Row(
+                  children: [
+                    Image.asset('assets/icons/crypto/usdt.png', width: 45.0,),
+                    SizedBox(width: 15.0),
+                    Flexible(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            '100.150.000.000 VNDT',
+                            style: TextStyle(
+                              // color: Color(0xFF2A5CA8),
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text(
+                            'Prax VNDT',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20.0,),
+              ],
+            ),
+
+            SizedBox(height: 10.0),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Mạng lưới',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20.0),
             Container(
-              height: 90.0,
-              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+              height: 48.0,
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(5.0),
-                border: Border.all(color: Color(0xFFE6E9EC), width: 1.0),
+                borderRadius: BorderRadius.circular(50.0),
+                border: Border.all(color: Color(0xFFEFF2F6), width: 1.0),
               ),
-              child: Row(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: DropdownButton<String>(
+                  value: dropdownValue,
+                  iconSize: 22,
+                  elevation: 24,
+                  style: const TextStyle(color: Colors.black, fontSize: 14.0),
+                  underline: Container(height: 0),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      dropdownValue = newValue!;
+                    });
+                  },
+                  items: <String>['ERC20', 'TRC20', 'BEP']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text('Mạng lưới: ' + value, style: TextStyle(fontSize: 16.0),),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20.0),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Địa chỉ ví',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+
+            SizedBox(height: 20.0),
+            TextFieldInput(
+              trailing: Row(
                 children: [
-                  Image.asset('assets/icons/crypto/Ripple-icon.png', width: 45.0,),
-                  SizedBox(width: 15.0),
-                  Flexible(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '0.585056 BTC',
-                          style: TextStyle(
-                              color: Color(0xFF2A5CA8),
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.w500),
+                  InkWell(
+                    onTap: () async {
+                      ClipboardData? data = await Clipboard.getData('text/plain');
+                      setState(() {
+                        _addressWallet.text = data!.text.toString();
+                      });
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(right: 10.0),
+                      child: const Text(
+                        'PASTE',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF2A5CA8),
                         ),
-                        SizedBox(height: 5.0),
-                        Text(
-                          'Bitcoin',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const QRViewExample(),
+                      ));
+                    },
+                    child: Container(
+                      child: Icon(
+                        Icons.qr_code_scanner,
+                        size: 25.0,
+                        color: Color(0xFF2A5CA8),
+                      ),
                     ),
                   ),
                 ],
+              ),
+            ),
+
+            SizedBox(height: 20.0),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Số lương',
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
             SizedBox(height: 10.0),
-            
-
-            Container(
-              padding: EdgeInsets.all(15.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(5.0),
-                border: Border.all(color: Color(0xFFE6E9EC), width: 1.0),
-
-              ),
-              child: Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Mạng lưới',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                      ),
+            TextFieldInput(
+              trailing: InkWell(
+                onTap: () {
+                  setState(() {
+                    _amount.text = qrdata;
+                  });
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(right: 10.0),
+                  child: const Text(
+                    'MAX',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xFF2A5CA8),
                     ),
                   ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    height: 54.0,
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0),
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: DropdownButton<String>(
-                        value: dropdownValue,
-                        iconSize: 22,
-                        elevation: 24,
-                        style: const TextStyle(color: Colors.black, fontSize: 14.0),
-                        underline: Container(height: 0),
-                        onChanged: (String? newValue) {
-                          setState(() {
-                            dropdownValue = newValue!;
-                          });
-                        },
-                        items: <String>['ERC20', 'TRC20', 'BEP']
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text('Mạng lưới: ' + value, style: TextStyle(fontSize: 16.0),),
-                          );
-                        }).toList(),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Địa chỉ ví',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    height: 54.0,
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Flexible(
-                          child: TextField(
-                            style: TextStyle(fontSize: 16.0),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Địa chỉ ví',
-                            ),
-                            controller: _addressWallet,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            ClipboardData? data = await Clipboard.getData('text/plain');
-                            setState(() {
-                              _addressWallet.text = data!.text.toString();
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 10.0),
-                            child: const Text(
-                              'PASTE',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF2A5CA8),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        InkWell(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const QRViewExample(),
-                            ));
-                          },
-                          child: Container(
-                            child: Icon(
-                              Icons.qr_code_scanner,
-                              size: 25.0,
-                              color: Color(0xFF2A5CA8),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Số lương',
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Container(
-                    height: 54.0,
-                    width: double.infinity,
-                    padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0),
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        Flexible(
-                          child: TextField(
-                            style: TextStyle(fontSize: 16.0),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                            ),
-                            controller: _amount,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            setState(() {
-                              _amount.text = qrdata;
-                            });
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.only(right: 10.0),
-                            child: const Text(
-                              'MAX',
-                              style: TextStyle(
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF2A5CA8),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "Phí rút USDT: 0 USDT",
-                      style: TextStyle(
-                        fontSize: 13.0,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
 
-            SizedBox(height: 30.0),
-            ButtonC(
+            SizedBox(height: 40.0),
+            ButtonPress(
               title: 'Gửi',
             ),
           ],

@@ -47,7 +47,9 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
     );
 
     return EmptyScreen(
-      title: 'DEPOSIT ' + widget.cryptoName,
+      appBar: AppBar(
+        title: Text('DEPOSIT ' + widget.cryptoName),
+      ),
       body: Center(
         child: Container(
           width: 260.0,
@@ -93,7 +95,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                 child: Column(
                   children: [
                     Text(
-                      'Bitnet Wallet',
+                      'Onicent Wallet',
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Color(0xFF3762D2),
@@ -112,7 +114,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                     SizedBox(height: 15.0),
                     SelectableText(
                       widget.address,
-                      style: TextStyle(height: 1.5, fontSize: 13.0),
+                      style: TextStyle(height: 1.5, fontSize: 13.0, color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -123,7 +125,6 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                 text: TextSpan(
                   style: TextStyle(
                     height: 1.3,
-                    color: Colors.black54,
                     fontSize: 14.0,
                   ),
                   children: const <TextSpan>[
@@ -132,7 +133,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                         text: 'Bitcoin(BTC) ',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: Colors.black87)),
+                            )),
                     TextSpan(
                         text:
                             'to this address. sending any other coins may result in permanent loss.'),
@@ -196,7 +197,6 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
             Text(
               '$title',
               style: TextStyle(
-                color: Colors.black54,
                 fontWeight: FontWeight.w500,
               ),
             ),

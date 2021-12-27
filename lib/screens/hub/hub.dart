@@ -1,20 +1,30 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'package:badges/badges.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-import '../../utilities/locales/flutter_locales.dart';
+import '../../screens/sign_in_screen.dart';
+import '../../theming/theme_manager.dart';
+import '../../utilities/locales/locales.dart';
+import 'package:provider/provider.dart';
+
+// import '../../utilities/locales/flutter_locales.dart';
 import '../../widgets/widgets.dart';
 
 // Screen
-import 'notifications.dart';
-import 'account_information.dart';
-import 'bank_link.dart';
+import 'bank_link/bank_link_screen.dart';
+import 'base_currency.dart';
+import 'choose_country_screen.dart';
+import 'notification/notification_screen.dart';
+import 'profile/account_information.dart';
 import 'identify_verification/account_verification.dart';
+import 'profile/profile_screen.dart';
 import 'refer_friends.dart';
-import 'setting/setting.dart';
+import 'ChangePasswordScreen.dart';
+import 'language.dart';
 import 'contact_and_feedback.dart';
-import 'trading_guide.dart';
-import 'statement_and_agreement.dart';
 import 'about_us.dart';
 
 class HubScreen extends StatefulWidget {
@@ -29,10 +39,10 @@ class _HubScreenState extends State<HubScreen> {
   bool isNotification = false;
   final avatar = 'assets/icons/ic_vector_gift_box.png';
   final userName = 'JOE NATA SA';
+  final accountID = '8587895005';
 
-  SizedBox SpaceHeight = const SizedBox(height: 13.0);
-  // automaticallyImplyLeading: false,
   late final AudioCache _audioCache;
+  bool _setSwitch = false;
 
   @override
   void initState() {
@@ -41,178 +51,363 @@ class _HubScreenState extends State<HubScreen> {
       prefix: 'assets/audios/',
       fixedPlayer: AudioPlayer()..setReleaseMode(ReleaseMode.STOP),
     );
-    Timer(const Duration(seconds: 2), (){
+    Timer(const Duration(seconds: 2), () {
       _audioCache.play('ringtone.mp3');
       setState(() {
-        isNotification =true;
+        isNotification = true;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final thmode = Provider.of<ThemeNotifier>(context);
+
     return EmptyScreen(
-      title: Locales.string(context, 'individual'),
-      titleFontWeight: FontWeight.w600,
-      iconBack: false,
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+      // appBar: AppBar(
+      //   title: Text('Cá nhân'),
+      //   automaticallyImplyLeading: false,
+      // ),
       body: ListView(
         children: <Widget>[
-          MenuItem(
-            height: 70,
-            borderTop: true,
-            borderBottom: true,
-            leading: Image.asset(
-              avatar,
-              width: 50.0,
+          GroupItem(children: [
+            Item(
+              height: 80,
+              onTap: () {
+                Navigator.of(context).push(createRoute(const ProfileScreen()));
+              },
+              leading: Image.asset(
+                avatar,
+                width: 55.0,
+              ),
+              titleStyle:
+                  TextStyle(fontWeight: FontWeight.w600, fontSize: 16.0),
+              title: userName,
+              subTitle: accountID,
             ),
-            title: userName,
-            subTitle: '0372788066',
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const AccountInformationScreen()));
-            },
-          ),
-          SpaceHeight,
-          if (isVerify) ...[
-            MenuItem(
-              borderTop: true,
+          ]),
+          _titleGroup(title: 'Thông tin chung'),
+          GroupItem(children: [
+            if (isVerify) ...[
+              Item(
+                borderBottom: true,
+                onTap: () {
+                  Navigator.of(context)
+                      .push(createRoute(const NotificationScreen()));
+                },
+                leading: Image.asset(
+                  'assets/icons/ic_kyc.png',
+                  width: 30.0,
+                ),
+                title: Locales.string(context, 'identity_verification'),
+                subTitle: 'Định danh tài khoản',
+                trailing: Container(
+                  child: const Icon(
+                    Icons.gpp_maybe,
+                    color: Colors.redAccent,
+                    size: 18,
+                  ),
+                ),
+              ),
+            ],
+            Item(
               borderBottom: true,
               onTap: () {
                 Navigator.of(context)
-                    .push(createRoute(const AccountVerificationScreen()));
+                    .push(createRoute(const NotificationScreen()));
               },
               leading: Image.asset(
-                'assets/icons/ic_kyc.png',
+                'assets/icons/ic_notify_ring.png',
                 width: 30.0,
               ),
-              title: Locales.string(context, 'identity_verification'),
-              trailing: Container(
-                margin: const EdgeInsets.only(right: 15.0),
-                child: const Icon(
-                  Icons.gpp_maybe,
-                  color: Colors.redAccent,
-                  size: 18,
+              title: Locales.string(context, 'account_notification'),
+              subTitle: 'Tin nhắn hoặc thông báo đến',
+              trailing: (() {
+                if (isNotification) {
+                  return Container(
+                    margin: const EdgeInsets.only(right: 16.0),
+                    child: const Icon(
+                      Icons.circle_notifications,
+                      color: Colors.red,
+                      size: 16,
+                    ),
+                  );
+                }
+              }()),
+            ),
+            Item(
+              borderBottom: true,
+              onTap: () {
+                Navigator.of(context).push(createRoute(const BaseCurrency()));
+              },
+              leading: Image.asset(
+                'assets/icons/ic_bank.png',
+                width: 30.0,
+              ),
+              title: 'Đồng tiền cở',
+              trailing: Text('VNDT'),
+            ),
+            Item(
+              borderBottom: true,
+              onTap: () {
+                Navigator.of(context).push(createRoute(const BankLinkScreen()));
+              },
+              leading: Image.asset(
+                'assets/icons/ic_vector_ic_add_money.png',
+                width: 30.0,
+              ),
+              title: 'Tài khoản ngân hàng',
+              subTitle: 'Thêm tài khoản ngân hàng',
+            ),
+            Item(
+              onTap: () {
+                Navigator.of(context)
+                    .push(createRoute(const ReferFriendsScreen()));
+              },
+              leading: Image.asset(
+                'assets/icons/ic_egift.png',
+                width: 30.0,
+              ),
+              title: Locales.string(context, 'refer_friends'),
+              subTitle: 'Giới thiệu bạn bè để nhận thưởng',
+            ),
+          ]),
+          _titleGroup(title: 'Cài đặt'),
+          GroupItem(
+            children: [
+              Item(
+                borderBottom: true,
+                onTap: () {
+                  Navigator.of(context)
+                      .push(createRoute(const LanguageScreen()));
+                },
+                leading: Icon(Icons.translate),
+                title: Locales.string(context, 'language'),
+                trailing: Text(
+                  Locales.string(context, 'location_language'),
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
                 ),
               ),
+              Item(
+                borderBottom: true,
+                onTap: () {
+                  Navigator.of(context)
+                      .push(createRoute(const ChangePasswordScreen()));
+                },
+                leading: Icon(Icons.lock),
+                title: Locales.string(context, 'change_password'),
+                subTitle: Locales.string(context, 'change_the_login_password'),
+              ),
+              Item(
+                borderBottom: true,
+                onTap: () {},
+                leading: Icon(Icons.notifications_active),
+                trailing: Switch(
+                  value: _setSwitch,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _setSwitch = newValue;
+                    });
+                  },
+                  activeColor: Colors.amber,
+                ),
+                title: 'Thông báo',
+                subTitle: 'Tắt hoặc mở thông báo',
+              ),
+              Item(
+                borderBottom: true,
+                onTap: () {},
+                leading: Icon(Icons.fingerprint),
+                trailing: Switch(
+                  value: _setSwitch,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _setSwitch = newValue;
+                    });
+                  },
+                  activeColor: Colors.amber,
+                ),
+                title: 'Touch ID/Face ID',
+                subTitle: 'Nâng cao bảo mật',
+              ),
+              Item(
+                borderBottom: false,
+                onTap: () {},
+                leading: Icon(Icons.security),
+                trailing: Switch(
+                  value: _setSwitch,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _setSwitch = newValue;
+                    });
+                  },
+                  activeColor: Colors.amber,
+                ),
+                title: 'Smart OTP',
+                subTitle: 'Nâng cao bảo mật',
+              ),
+              Item(
+                borderBottom: false,
+                onTap: () {},
+                leading: Icon(Icons.dark_mode),
+                trailing: Switch(
+                  value: _setSwitch,
+                  onChanged: (bool newValue) {
+                    setState(() {
+                      _setSwitch = newValue;
+                      thmode.setLightMode();
+                    });
+                  },
+                  activeColor: Colors.amber,
+                ),
+                title: 'Giao diện',
+                subTitle: 'Nâng cao bảo mật',
+              ),
+            ],
+          ),
+          _titleGroup(title: 'khác'), // Help and feedback
+          GroupItem(children: [
+            Item(
+              borderBottom: true,
+              onTap: () {
+                Navigator.of(context)
+                    .push(createRoute(const ChooseCountryScreen()));
+              },
+              leading: Icon(Icons.location_on),
+              title: 'Quốc gia',
+              subTitle: '',
             ),
-            SpaceHeight,
-          ],
-          MenuItem(
-            borderTop: true,
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const NotificationScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_notify_ring.png',
-              width: 30.0,
+            Item(
+              borderBottom: true,
+              onTap: () {
+                Navigator.of(context)
+                    .push(createRoute(const ContactAndFeedbackScreen()));
+              },
+              leading: const Icon(Icons.confirmation_number),
+              title: Locales.string(context, 'contact_and_feedback'),
+              subTitle: 'Giải đáp thắc mắc và hỗ trợ',
             ),
-            title: Locales.string(context, 'account_notification'),
-            trailing: (() {
-              if (isNotification) {
-                return Container(
-                  margin: const EdgeInsets.only(right: 16.0),
-                  child: const Icon(
-                    Icons.circle_notifications,
+            Item(
+              borderBottom: true,
+              onTap: () {
+                Navigator.of(context).push(createRoute(const AboutUsScreen()));
+              },
+              leading: Icon(Icons.info),
+              title: Locales.string(context, 'about_us'),
+            ),
+            Item(
+              onTap: () {
+                Navigator.of(context)
+                    .push(createRoute(const ContactAndFeedbackScreen()));
+              },
+              leading: Icon(Icons.call),
+              title: 'Đường dây nóng: 1900512562',
+            ),
+          ]),
+
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10.0),
+            padding: EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 45.0,
+                  height: 45.0,
+                  decoration: BoxDecoration(
+                    color: Colors.blue[900],
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  child: Icon(Icons.facebook, color: Colors.white),
+                ),
+                SizedBox(width: 15.0),
+                Container(
+                  width: 45.0,
+                  height: 45.0,
+                  decoration: BoxDecoration(
                     color: Colors.red,
-                    size: 16,
+                    borderRadius: BorderRadius.circular(50.0),
                   ),
-                );
-              }
-            }()),
-          ),
-          MenuItem(
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const BankLinkScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_credit_card.png',
-              width: 30.0,
-            ),
-            title: Locales.string(context, 'bank_account_link'),
-          ),
-          MenuItem(
-            borderBottom: true,
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const ReferFriendsScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_egift.png',
-              width: 30.0,
-            ),
-            title: Locales.string(context, 'refer_friends'),
-          ),
-          SpaceHeight,
-          MenuItem(
-            borderTop: true,
-            borderBottom: true,
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const SettingScreen()));
-            },
-            leading:
-            Image.asset('assets/icons/ic_setting.png', width: 30.0),
-            title: Locales.string(context, 'setting'),
-          ),
-          SpaceHeight,
-          MenuItem(
-            borderTop: true,
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const ContactAndFeedbackScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_support_center.png',
-              width: 30.0,
-            ),
-            title: Locales.string(context, 'contact_and_feedback'),
-          ),
-          MenuItem(
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const TradingGuideScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_link.png',
-              width: 30.0,
-            ),
-            title: Locales.string(context, 'trading_guide'),
-            trailing: Container(
-              height: 16,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: const Color(0xFFFF6D36),
-                boxShadow: const [
-                  BoxShadow(color: Colors.black12, spreadRadius: 0.1),
-                ],
-              ),
-              margin: const EdgeInsets.only(left: 5.0, right: 5.0),
-              padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-              child: Row(
-                children: const [
-                  Text(
-                    'Video',
-                    style: TextStyle(color: Colors.white, fontSize: 12),
+                  child: Icon(
+                    Icons.smart_display,
+                    color: Colors.white,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(width: 15.0),
+                Container(
+                  width: 45.0,
+                  height: 45.0,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  child: Icon(Icons.send, color: Colors.white),
+                ),
+              ],
             ),
           ),
-          MenuItem(
-            borderBottom: true,
-            onTap: () {
-              Navigator.of(context)
-                  .push(createRoute(const AboutUsScreen()));
-            },
-            leading: Image.asset(
-              'assets/icons/ic_info.png',
-              width: 30.0,
+          GroupItem(
+            children: [
+              InkWell(
+                onTap: () => Get.offAll(SignInScreen()),
+                child: Ink(
+                  height: 55.0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.logout, size: 22.0),
+                      SizedBox(width: 5.0),
+                      Text(
+                        'Đăng xuất',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Phiên bản ',
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey),
+                ),
+                Text(
+                  '1.0.0',
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.grey),
+                ),
+              ],
             ),
-            title: Locales.string(context, 'about_us'),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _titleGroup({String? title}) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      child: Text(
+        '$title',
+        style: const TextStyle(
+          fontSize: 16.0,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }

@@ -26,7 +26,7 @@ class _P2PScreenState extends State<P2PScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      appBar: Container(
+      appBar: AppBar(actions: [Container(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.primary,
@@ -157,7 +157,7 @@ class _P2PScreenState extends State<P2PScreen> {
             ),
           ],
         ),
-      ),
+      ),],),
       body: DefaultTabController(
         length: 2,
         initialIndex: _tabScope!.tabIndex,

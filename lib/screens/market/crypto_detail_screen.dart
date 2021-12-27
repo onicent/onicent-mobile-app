@@ -63,34 +63,35 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
     // }
     print(NumberFormatter.formatter('1000'));
     return EmptyScreen(
-      title: 'BTC',
-      tabBarAction: [
-        IconButton(
-          onPressed: () {
-            setState(() {
-              isCandleChart = !isCandleChart;
-            });
-          },
-          icon: Image.asset(
-            'assets/icons/${isCandleChart ? 'icon_line_chart.png' : 'icon_candle_chart.png'}',
-            width: 24.0,
-            color: Colors.white,
+      appBar: AppBar(
+        title: Text('BTC/USD'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isCandleChart = !isCandleChart;
+              });
+            },
+            icon: Image.asset(
+              'assets/icons/${isCandleChart ? 'icon_line_chart.png' : 'icon_candle_chart.png'}',
+              width: 24.0,
+              color: Colors.white,
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: () {
-            setState(() {
-              isFavorite = !isFavorite;
-            });
-          },
-          icon: Image.asset(
-            'assets/icons/${isFavorite ? 'ic_favourite_checked.png' : 'ic_favourite_unchecked.png'}',
-            width: 23.0,
-            // color: Colors.white,
+          IconButton(
+            onPressed: () {
+              setState(() {
+                isFavorite = !isFavorite;
+              });
+            },
+            icon: Image.asset(
+              'assets/icons/${isFavorite ? 'ic_favourite_checked.png' : 'ic_favourite_unchecked.png'}',
+              width: 23.0,
+              // color: Colors.white,
+            ),
           ),
-        ),
-        SizedBox(width: 5.0)
-      ],
+        ],
+      ),
       body: Container(
         child: (() {
           if (_cryptoDetail != null) {
@@ -587,7 +588,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                           padding: EdgeInsets.all(15.0),
                           child: Material(
                             color: Colors.white,
-                            child: ButtonC(title: isBuy? 'Mua': 'Bán'),
+                            child: ButtonPress(title: isBuy? 'Mua': 'Bán'),
                           ),
                         ),
                       ],

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ButtonC extends StatefulWidget {
+class ButtonPress extends StatefulWidget {
   final String title;
   final Color? textColor;
   final Color? backgroundColor;
   final Function()? onPress;
   final double? height;
   final double? width;
+  final double borderRadius;
+  final Widget? child;
 
-  const ButtonC({
+
+  const ButtonPress({
     Key? key,
     this.title = '',
     this.textColor,
@@ -16,32 +19,35 @@ class ButtonC extends StatefulWidget {
     this.onPress,
     this.height,
     this.width,
+    this.borderRadius = 50.0,
+    this.child,
   }) : super(key: key);
 
   @override
-  State<ButtonC> createState() => _ButtonCState();
+  State<ButtonPress> createState() => _ButtonPressState();
 }
 
-class _ButtonCState extends State<ButtonC> {
+class _ButtonPressState extends State<ButtonPress> {
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       onTap: widget.onPress,
+      borderRadius: BorderRadius.circular(widget.borderRadius),
+      splashColor: Colors.blue[900],
       child: Ink(
-        height: widget.height ?? 48.0,
+        height: widget.height ?? 46.0,
         width: widget.width ?? double.infinity,
         decoration: BoxDecoration(
-          color: widget.backgroundColor ?? colorScheme.secondary,
-          borderRadius: BorderRadius.circular(5.0),
+          color: widget.backgroundColor ?? Color(0xFF1f47cd),
+          borderRadius: BorderRadius.circular(widget.borderRadius),
         ),
         child: Center(
-          child: Text(
+          child: widget.child ?? Text(
             widget.title,
             style: TextStyle(
               color: widget.textColor ?? Colors.white,
               fontSize: 16.0,
-              fontWeight: FontWeight.w400,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),

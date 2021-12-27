@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'login_screen.dart';
+import 'sign_in_screen.dart';
 import 'package:onicent/main.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SplashState extends State<SplashScreen> {
 
   _nextScreen() async{
     await Future.delayed(Duration(milliseconds: 3500), (){});
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInScreen()));
   }
 
   @override

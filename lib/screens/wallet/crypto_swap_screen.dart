@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 
 class CryptoSwapScreen extends StatefulWidget {
@@ -14,179 +15,131 @@ class _CryptoSwapScreenState extends State<CryptoSwapScreen> {
   Widget build(BuildContext context) {
     return EmptyScreen(
       title: 'Quy đổi',
+      appBar: AppBar(
+        title: Text('Quy đổi'),
+      ),
       padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
       body: Column(
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0),
-              border: Border.all(color: Color(0xFFE6E9EC), width: 1.0),
+          GroupItem(children: [
+            SizedBox(height: 20.0),
 
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'From',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    'From',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
-                  child: Row(
-                    children: [
-                      InkWell(
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/crypto/Bitcoin-icon.png',
-                              width: 22.0,
-                            ),
-                            SizedBox(width: 5.0),
-                            Text('BTC'),
-                            SizedBox(width: 5.0),
-                            Icon(
-                              Icons.expand_more,
-                              size: 20.0,
-                            ),
-                            SizedBox(width: 5.0),
-                            Container(
-                              color: Color(0xFFEFF2F6),
-                              width: 1.0,
-                              height: 30.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 5.0),
-                      Flexible(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                Row(
+            SizedBox(height: 15.0),
+            TextFieldInput(
+              leading: InkWell(
+                child: Row(
                   children: [
-                    Flexible(
-                      child: Column(
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    bottom: BorderSide(width: 1.0, color: Color(0xFFEFF2F6),)
-                                )
-                            ),
-                          ),
-                        ],
-                      ),
+                    Image.asset(
+                      'assets/icons/crypto/btc.png',
+                      width: 22.0,
                     ),
+                    SizedBox(width: 5.0),
+                    Text('BTC'),
+                    SizedBox(width: 5.0),
+                    Icon(
+                      Icons.expand_more,
+                      size: 20.0,
+                    ),
+                    SizedBox(width: 5.0),
                     Container(
-                      width: 50,
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.0),
-                          color: Colors.white,
-                          border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
-                      child: InkWell(
-                        child: Icon(
-                          Icons.swap_vert,
-                        ),
-                      ),
+                      color: Color(0xFFEFF2F6),
+                      width: 1.0,
+                      height: 30.0,
                     ),
                   ],
                 ),
-                Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    'From',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 15.0),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
-                  child: Row(
+              ),
+            ),
+
+            SizedBox(height: 15.0),
+            Row(
+              children: [
+                Flexible(
+                  child: Column(
                     children: [
-                      InkWell(
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/icons/crypto/Bitcoin-icon.png',
-                              width: 22.0,
-                            ),
-                            SizedBox(width: 5.0),
-                            Text('BTC'),
-                            SizedBox(width: 5.0),
-                            Icon(
-                              Icons.expand_more,
-                              size: 20.0,
-                            ),
-                            SizedBox(width: 5.0),
-                            Container(
-                              color: Color(0xFFEFF2F6),
-                              width: 1.0,
-                              height: 30.0,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(width: 5.0),
-                      Flexible(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                          ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(width: 1.0, color: Color(0xFFEFF2F6),)
+                            )
                         ),
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 15.0),
-
+                Container(
+                  width: 50,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      color: Get.theme.inputDecorationTheme.fillColor,
+                      border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
+                  child: InkWell(
+                    child: Icon(
+                      Icons.swap_vert,
+                    ),
+                  ),
+                ),
               ],
             ),
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'From',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            SizedBox(height: 15.0),
+            TextFieldInput(
+              leading: InkWell(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/crypto/btc.png',
+                      width: 22.0,
+                    ),
+                    SizedBox(width: 5.0),
+                    Text('BTC'),
+                    SizedBox(width: 5.0),
+                    Icon(
+                      Icons.expand_more,
+                      size: 20.0,
+                    ),
+                    SizedBox(width: 5.0),
+                    Container(
+                      color: Color(0xFFEFF2F6),
+                      width: 1.0,
+                      height: 30.0,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20.0),
+          ],),
+          SizedBox(height: 15.0),
+          GroupItem(
+            children: [
+              _itemTransactionHistory(),
+              _itemTransactionHistory(),
+            ],
           ),
           SizedBox(height: 15.0),
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0),
-              border: Border.all(color: Color(0xFFE6E9EC), width: 1.0),
-
-            ),
-            child: Column(
-              children: [
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-              ],
-            ),
-          ),
-          SizedBox(height: 15.0),
-          ButtonC(
+          ButtonPress(
             title: 'Gửi',
           ),        ],
       ),
@@ -211,7 +164,6 @@ class _CryptoSwapScreenState extends State<CryptoSwapScreen> {
                   style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
-                    color: Colors.black87,
                   ),
                 ),
                 Text('+0.0578 BTC',

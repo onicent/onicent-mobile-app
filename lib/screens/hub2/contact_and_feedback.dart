@@ -1,8 +1,7 @@
-import '../../widgets/group_item.dart';
-import '../../widgets/route_render.dart';
+import 'package:onicent/widgets/route_render.dart';
 import 'package:flutter/material.dart';
-import '../../widgets/empty_screen.dart';
-import '../../widgets/item.dart';
+import 'package:onicent/widgets/empty_screen.dart';
+import 'package:onicent/widgets/menu_item.dart';
 
 class ContactAndFeedbackScreen extends StatefulWidget {
   const ContactAndFeedbackScreen({Key? key}) : super(key: key);
@@ -22,35 +21,29 @@ class _ContactAndFeedbackScreenState extends State<ContactAndFeedbackScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      padding: EdgeInsets.symmetric(horizontal: 10.0),
+        title: 'Liên hệ và phản hồi',
       body: Column(
           children: [
-            GroupItem(
-              children: [
-                Item(
-                  borderBottom: true,
-                  onTap: () {
-                    Navigator.of(context).push(createRoute(const LiveChatScreen()));
-                  },
-                  title: 'Live chat',
-                  decoration: borderBottom,
-                ),
-                Item(
-                  borderBottom: true,
-                  onTap: () {
-                    Navigator.of(context).push(createRoute(const FeedbackScreen()));
-                  },
-                  title: 'Feedback',
-                  decoration: borderBottom,
-                ),
-                Item(
-                  title: 'Email',
-                  trailing: Text(
-                    'Cs@bitnet.asian',
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  ),
-                ),
-              ],
+            MenuItem(
+              onTap: () {
+                Navigator.of(context).push(createRoute(const LiveChatScreen()));
+              },
+              title: 'Live chat',
+              decoration: borderBottom,
+            ),
+            MenuItem(
+              onTap: () {
+                Navigator.of(context).push(createRoute(const FeedbackScreen()));
+              },
+              title: 'Feedback',
+              decoration: borderBottom,
+            ),
+            MenuItem(
+              title: 'Email',
+              trailing: Text(
+                'Cs@bitnet.asian',
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
             ),
           ],
         ),
@@ -68,7 +61,7 @@ class LiveChatScreen extends StatefulWidget {
 class _LiveChatScreenState extends State<LiveChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return EmptyScreen( body: Container());
+    return EmptyScreen(title: 'Live chat', body: Container());
   }
 }
 
@@ -83,6 +76,6 @@ class FeedbackScreen extends StatefulWidget {
 class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
-    return EmptyScreen( body: Container());
+    return EmptyScreen(title: 'Feedback', body: Container());
   }
 }

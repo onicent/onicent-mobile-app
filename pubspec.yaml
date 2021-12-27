@@ -31,6 +31,10 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  get: ^4.6.1
+  provider: ^6.0.1
+  badges: ^2.0.2
+
   shared_preferences: ^2.0.9
 
   flutter_locales: ^2.0.0
@@ -79,6 +83,15 @@ flutter:
     - assets/icons/flag/VI.png
     - assets/icons/flag/EN.png
     - assets/icons/crypto/
+  fonts:
+    - family: Regular
+      fonts:
+        - asset: assets/fonts/MaterialIcons-Regular.otf
+          weight: 200
+    - family: RobotoX
+      fonts:
+        - asset: assets/fonts/inter_regular.ttf
+#          weight: 200
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/widgets.dart';
 import '../../../utilities/locales/flutter_locales.dart';
 
-import '../../login_screen.dart';
+import '../../sign_in_screen.dart';
 import 'language.dart';
 import 'security_settings.dart';
 import 'notifications_settings.dart';
@@ -89,7 +89,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> SignInScreen()));
                             },
                             child: const Text('Xác nhận', style: TextStyle(color: Color(0xFF286DEA), fontSize: 16),),
                           ),
