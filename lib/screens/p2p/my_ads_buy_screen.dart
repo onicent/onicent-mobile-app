@@ -13,6 +13,7 @@ class _MyADSBuyScreenState extends State<MyADSBuyScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
       child: ListView(
         children: [
           MyADSItem(

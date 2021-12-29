@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:onicent/widgets/empty_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
                     ),
                   )
                 ],
@@ -91,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 17.0,
                       fontWeight: FontWeight.w600,
-                      color: Colors.black87,
                     ),
                   )
                 ],
@@ -179,9 +178,10 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () => ontab!,
           child: Ink(
             decoration: BoxDecoration(
-                border: Border.all(width: 1.0, color: const Color(0xFFFAF9F9)),
+                border: Border.all(width: 1.0, color:  Get.theme.backgroundColor),
                 borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-                color: Colors.white),
+                color: Get.theme.backgroundColor,
+            ),
             child: Container(
               height: 85,
               margin: const EdgeInsets.all(10.0),
@@ -220,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: EdgeInsets.symmetric(vertical: 8.0),
       decoration: BoxDecoration(
         border:
-            Border(bottom: BorderSide(width: 1.0, color: Color(0xFFF1F1F1))),
+            Border(bottom: BorderSide(width: 1.0, color: Get.theme.dividerColor )),
       ),
       child: InkWell(
         onTap: () => onTab,

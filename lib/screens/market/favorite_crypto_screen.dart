@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:onicent/models/market/favorite.dart';
 import 'package:onicent/services/http_api.dart';
 
@@ -112,8 +113,8 @@ class _FavoriteCryptoScreenState extends State<FavoriteCryptoScreen> {
         if (widget.isShowSearch) ...[
           Container(
             padding: const EdgeInsets.all(15.0),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Get.theme.backgroundColor,
               border: Border(
                   bottom: BorderSide(width: 0.6, color: Color(0xFFE8E8E8))),
             ),
@@ -193,8 +194,8 @@ class _FavoriteCryptoScreenState extends State<FavoriteCryptoScreen> {
                           child: Ink(
                             padding: const EdgeInsets.all(10.0),
                             decoration:  BoxDecoration(
-                              border: Border.all(color: Color(0xFFECEEF3), width: 2.0),
-                              color: Color(0xFFECEEF3),
+                              border: Border.all(color: Get.theme.dividerColor, width: 2.0),
+                              color: Get.theme.backgroundColor,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 import 'my_ads_add_item.dart';
 import 'package:onicent/screens/p2p/my_ads_buy_screen.dart';
 import 'package:onicent/screens/p2p/my_ads_sell_screen.dart';
@@ -17,7 +19,20 @@ class _MyADSScreenState extends State<MyADSScreen> {
     final TabScope? _tabScope = TabScope.getInstance();
     print(_tabScope);
     return EmptyScreen(
-      title: 'Bảng điều khiển',
+      appBar: AppBar(
+        title: Text('Bảng điều khiển'),
+        actions: [
+
+          IconButton(
+            onPressed: (){
+              Get.to(MyADSAddItem());
+            },
+            icon: Icon(
+              Icons.add_circle_outline,
+            ),
+          ),
+        ],
+      ),
       tabBarAction: [
         IconButton(
           onPressed: () {
@@ -34,8 +49,8 @@ class _MyADSScreenState extends State<MyADSScreen> {
           children: <Widget>[
             Container(
               height: 35.0,
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: Get.theme.backgroundColor,
               ),
               child: TabBar(
                 onTap: (index) => _tabScope.setTabIndex(index),
@@ -47,12 +62,11 @@ class _MyADSScreenState extends State<MyADSScreen> {
                   borderSide: BorderSide(color: Colors.blue, width: 1.5),
                 ),
                 // indicatorColor: Colors.blue,
-                unselectedLabelColor: Colors.black54,
+                unselectedLabelColor: Colors.grey,
                 unselectedLabelStyle: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w400,
                 ), //For Selected tab
-                labelColor: Colors.black87,
                 labelStyle: const TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.w600,

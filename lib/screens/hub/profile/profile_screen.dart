@@ -36,6 +36,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           GroupItem(
             children: [
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Họ tên',
                 arrow: false,
@@ -52,6 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               Item(
+                height: 50.0,
                 borderBottom: true,
                 arrow: false,
                 title: 'Tên đăng nhập',
@@ -68,6 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
+                height: 50.0,
                 title: 'Xác thực KYC',
                 arrow: false,
                 borderBottom: true,
@@ -88,6 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Loại tài khoản',
                 arrow: false,
@@ -108,6 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Email',
                 arrow: false,
@@ -128,6 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
+                height: 50.0,
                 title: 'Số điện thoại',
                 arrow: false,
                 trailing: Row(
@@ -150,6 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           GroupItem(
             children: [
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Ngày sinh',
                 arrow: false,
@@ -170,6 +177,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Giới tính',
                 arrow: false,
@@ -191,6 +199,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
 
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Địa chỉ',
                 arrow: false,
@@ -211,7 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
-                borderBottom: true,
+                height: 50.0,
                 title: 'Ngày tham gia',
                 arrow: false,
                 trailing: Row(
@@ -235,6 +244,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           GroupItem(
             children: [
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Facebook',
                 arrow: false,
@@ -255,6 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
+                height: 50.0,
                 borderBottom: true,
                 title: 'Zalo',
                 arrow: false,
@@ -275,7 +286,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
               ),
               Item(
-                borderBottom: true,
+                height: 50.0,
                 title: 'Telegram',
                 arrow: false,
                 trailing: Row(

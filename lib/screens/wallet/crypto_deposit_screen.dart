@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:flutter/services.dart';
 
-class CryptoDepositScreen extends StatefulWidget {
+
+class CryptoDepositScreen extends StatelessWidget {
+
   final String cryptoName;
   final String address;
-  const CryptoDepositScreen(
+  CryptoDepositScreen(
       {Key? key, required this.cryptoName, required this.address})
       : super(key: key);
 
-  @override
-  State<CryptoDepositScreen> createState() => _CryptoDepositScreenState();
-}
-
-class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
   String dropdownValue = 'ERC20';
 
   @override
@@ -36,7 +34,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
               strutStyle: StrutStyle(fontSize: 12.0),
               text: TextSpan(
                   style: TextStyle(color: Colors.white),
-                  text: widget.address),
+                  text: this.address),
             ),
           ),
         ),
@@ -48,7 +46,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
 
     return EmptyScreen(
       appBar: AppBar(
-        title: Text('DEPOSIT ' + widget.cryptoName),
+        title: Text('DEPOSIT ' + this.cryptoName),
       ),
       body: Center(
         child: Container(
@@ -58,22 +56,25 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
             children: [
               Container(
                 width: double.infinity,
+                height: 48.0,
                 padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
+                  color: Get.theme.inputDecorationTheme.fillColor,
+                  borderRadius: BorderRadius.circular(6.0),
                   border: Border.all(color: Colors.black12, width: 1.0),
                 ),
                 child: DropdownButton<String>(
                   value: dropdownValue,
-                  iconSize: 22,
+                  // iconSize: 22,
                   elevation: 24,
-                  style: const TextStyle(color: Colors.black, fontSize: 14.0),
+                  style: const TextStyle(fontSize: 14.0),
                   underline: Container(height: 0),
+                  borderRadius: BorderRadius.circular(6.0),
+
                   onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
+                    // setState(() {
+                    //   dropdownValue = newValue!;
+                    // });
                   },
                   items: <String>['ERC20', 'TRC20', 'BEP']
                       .map<DropdownMenuItem<String>>((String value) {
@@ -89,7 +90,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: BorderRadius.circular(6.0),
                   border: Border.all(color: Colors.black12, width: 1.0),
                 ),
                 child: Column(
@@ -104,7 +105,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                     ),
                     SizedBox(height: 15.0),
                     QrImage(
-                      data: widget.address,
+                      data: this.address,
                       version: QrVersions.auto,
                       embeddedImage: AssetImage('assets/icons/crypto/bnb.png'),
                       embeddedImageStyle: QrEmbeddedImageStyle(
@@ -113,7 +114,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                     ),
                     SizedBox(height: 15.0),
                     SelectableText(
-                      widget.address,
+                      this.address,
                       style: TextStyle(height: 1.5, fontSize: 13.0, color: Colors.black87),
                       textAlign: TextAlign.center,
                     ),
@@ -126,6 +127,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                   style: TextStyle(
                     height: 1.3,
                     fontSize: 14.0,
+                    color: Colors.grey,
                   ),
                   children: const <TextSpan>[
                     TextSpan(text: 'send only '),
@@ -151,7 +153,7 @@ class _CryptoDepositScreenState extends State<CryptoDepositScreen> {
                     ),
                     title: 'Copy',
                     onTap: () {
-                      Clipboard.setData(ClipboardData(text: widget.address)).then(
+                      Clipboard.setData(ClipboardData(text: this.address)).then(
                         (value) {
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
 

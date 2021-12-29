@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:onicent/screens/wallet/transaction_history_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,62 +16,433 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      title: 'Giao dịch',
-      decoration: BoxDecoration(color: Colors.white),
+      appBar: AppBar(
+        title: Text(
+          'Giao dịch',
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
       body: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              InkWell(
-                child: Ink(
-                  child: Row(
-                    children: [
-                      Image.asset('assets/icons/crypto/Ripple-icon.png',
-                          width: 20),
-                      SizedBox(width: 3.0),
-                      Text(
-                        'XRP',
-                        style: TextStyle(),
-                      ),
-                      SizedBox(width: 3.0),
-                      Icon(Icons.add, size: 16.0),
-                    ],
+          Container(
+            height: 45.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  child: Ink(
+                    child: Row(
+                      children: [
+                        Image.asset('assets/icons/crypto/xrp.png',
+                            width: 20),
+                        SizedBox(width: 5.0),
+                        Text(
+                          'XRP',
+                          style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600
+                          ),
+                        ),
+                        SizedBox(width: 3.0),
+                        Icon(Icons.keyboard_arrow_down, size: 16.0),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              InkWell(
-                child: Ink(
-                  child: Row(
-                    children: [
-                      Text(
-                        'Thời gian',
-                        style: TextStyle(),
+                InkWell(
+                  child: Ink(
+                    child: Text(
+                      'Thời gian',
+                      style: TextStyle(
+                          fontSize: 16.0
                       ),
-                      SizedBox(width: 3.0),
-                      Icon(Icons.add, size: 16.0),
-                    ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Flexible(
             child: ListView(
               children: [
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
-                _itemTransactionHistory(),
+                GroupItem(
+                  children: [
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      borderBottom: true,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                    Item(
+                      height: 65,
+                      leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                      title: 'Giao dich 78953',
+                      subTitle: '22/12/2020 11:58:32',
+                      arrow: false,
+                      trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text('+0.0578 BTC',
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(height: 5.0),
+                          Text('Hoàn thành',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.green,
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      onTap: (){
+                        Get.to(TransactionHistoryDetailScreen());
+                      },
+
+                    ),
+                  ],
+                ),
+
+
               ],
             ),
           ),
@@ -79,63 +451,4 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     );
   }
 
-  Widget _itemTransactionHistory() {
-    return WrapCard(
-      onTab: (){
-        Navigator.of(context).push(createRoute(const TransactionHistoryDetailScreen()));
-      },
-      padding: EdgeInsets.all(15.0),
-      child: Row(
-        children: [
-          Image.asset('assets/icons/icon_gif.png', width: 40.0),
-          SizedBox(width: 10.0),
-          Flexible(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Giao dịch #78789526',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
-                    ),
-                    Text('+0.0578 BTC',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 5.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('22/12/2020 11:58:32',
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    Text('Hoàn thành',
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.green,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

@@ -1,9 +1,11 @@
+import 'package:get/get.dart';
 import 'package:onicent/screens/wallet/crypto_swap_screen.dart';
 import 'package:onicent/screens/wallet/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/widgets.dart';
 import 'crypto_deposit_screen.dart';
 import 'crypto_withdraw_screen.dart';
+import 'transaction_history_detail_screen.dart';
 
 class CryptoScreen extends StatefulWidget {
   const CryptoScreen({Key? key}) : super(key: key);
@@ -16,107 +18,94 @@ class _CryptoScreenState extends State<CryptoScreen> {
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      title: 'BTC',
+      appBar: AppBar(
+        title: Text('BTC'),
+      ),
+      padding: EdgeInsets.symmetric(vertical: 0,horizontal: 15.0),
+
       body: ListView(
         children: [
-          Container(
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            padding:
-            const EdgeInsets.symmetric(vertical: 20.0, horizontal: 18.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5.0),
-              // border: Border.all(width: 1.0, color: const Color(0xFFEBEBEF)),
-              // border: const Border(
-              //   bottom: BorderSide(width: 1.0, color: Color(0xFFEBEBEF)),
-              // ),
 
-              boxShadow: const [
-                BoxShadow(color: Color(0xFFF5F1FA), spreadRadius: 0.5),
-              ],
-              image: const DecorationImage(
-                image: AssetImage('assets/images/cover_large.jpg'),
-                fit: BoxFit.fitWidth,
-                alignment: Alignment.bottomLeft,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const SizedBox(height: 10.0),
-                Center(
-                  child: Text(
-                    'Số dư ',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black54,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10.0),
-                Center(
-                  child: Text(
-                    '0.05486 BTC',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          GroupItem(
+            children: [
+              Container(
+                height: 200,
+                width: MediaQuery.of(context).size.width,
+
+
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _itemCard(
-                      icon: const Icon(
-                        Icons.file_download,
-                        color: Color(0xFF21599C),
+                    const SizedBox(height: 10.0),
+                    Center(
+                      child: Text(
+                        'Số dư ',
+                        style: TextStyle(
+                          fontSize: 15,
+                        ),
                       ),
-                      title: 'Gửi',
-                      onTap: () {
-                        Navigator.of(context).push(
-                            createRoute( CryptoDepositScreen(address: 'ádasdasd', cryptoName: 'btc',)));
-                      },
                     ),
-                    _itemCard(
-                      icon: const Icon(
-                        Icons.file_upload,
-                        color: Color(0xFF21599C),
+                    const SizedBox(height: 10.0),
+                    Center(
+                      child: Text(
+                        '0.05486 BTC',
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                      title: 'Nhận',
-                      onTap: () {
-                        Navigator.of(context).push(
-                            createRoute(const CryptoWithdrawScreen()));
-                      },
                     ),
-                    _itemCard(
-                      icon: const Icon(
-                        Icons.history,
-                        color: Colors.black54,
-                      ),
-                      title: 'Quy đổi',
-                      onTap: () {
-                        Navigator.of(context).push(
-                            createRoute(const CryptoSwapScreen()));
-                      },
+                    const SizedBox(height: 10.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _itemCard(
+                          icon: const Icon(
+                            Icons.file_download,
+                            color: Color(0xFF21599C),
+                          ),
+                          title: 'Gửi',
+                          onTap: () {
+                            Navigator.of(context).push(
+                                createRoute( CryptoDepositScreen(address: 'ádasdasd', cryptoName: 'btc',)));
+                          },
+                        ),
+                        _itemCard(
+                          icon: const Icon(
+                            Icons.file_upload,
+                            color: Color(0xFF21599C),
+                          ),
+                          title: 'Nhận',
+                          onTap: () {
+                            Navigator.of(context).push(
+                                createRoute(const CryptoWithdrawScreen()));
+                          },
+                        ),
+                        _itemCard(
+                          icon: const Icon(
+                            Icons.history,
+                            color: Colors.black54,
+                          ),
+                          title: 'Quy đổi',
+                          onTap: () {
+                            Navigator.of(context).push(
+                                createRoute(const CryptoSwapScreen()));
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            height: 1.0,
-            width: MediaQuery.of(context).size.width,
-            color: const Color(0xFFDBEAFF),
-          ),
+
+
           Container(
            padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
            decoration: const BoxDecoration(
              color: Colors.transparent,
-             border: Border.symmetric(vertical: BorderSide(width: 0.5, color: Colors.grey))
+             // border: Border.symmetric(vertical: BorderSide(width: 0.5, color: Colors.grey))
            ),
            child:  Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,7 +115,6 @@ class _CryptoScreenState extends State<CryptoScreen> {
                  style: TextStyle(
                    fontWeight: FontWeight.w600,
                    fontSize: 17.0,
-                   color: Colors.black87,
                  ),
                ),
                InkWell(
@@ -148,15 +136,251 @@ class _CryptoScreenState extends State<CryptoScreen> {
              ],
            ),
          ),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
-          _itemTransactionHistory(),
+
+          GroupItem(
+            children: [
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                borderBottom: true,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+              Item(
+                height: 65,
+                leading: Image.asset('assets/icons/icon_gif.png', width: 35.0),
+                title: 'Giao dich 78953',
+                subTitle: '22/12/2020 11:58:32',
+                arrow: false,
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('+0.0578 BTC',
+                      style: TextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text('Hoàn thành',
+                      style: TextStyle(
+                        fontSize: 13.0,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.green,
+                      ),
+                    ),
+
+                  ],
+                ),
+                onTap: (){
+                  Get.to(TransactionHistoryDetailScreen());
+                },
+
+              ),
+            ],
+          ),
+
+
+
         ],
       ),
     );
@@ -184,7 +408,6 @@ class _CryptoScreenState extends State<CryptoScreen> {
                 Text(
                   '$title',
                   style: const TextStyle(
-                    color: Colors.black54,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -200,7 +423,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
     return  WrapCard(
       child: Row(
         children: [
-          Image.asset('assets/icons/icon_gif.png', width: 40.0),
+          Image.asset('assets/icons/icon_gif.png', width: 35.0),
           SizedBox(width: 10.0),
           Flexible(
             child: Column(
@@ -208,7 +431,7 @@ class _CryptoScreenState extends State<CryptoScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('Giao dịch #78789526',
+                    Text('Giao dịch #78789',
                       style: TextStyle(
                         fontSize: 16.0,
                         fontWeight: FontWeight.w600,

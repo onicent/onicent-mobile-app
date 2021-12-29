@@ -48,7 +48,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
       height: 48.0,
 
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(50.0),
+        borderRadius: BorderRadius.circular(6.0),
         border: Border.all(color: Theme.of(context).dividerColor, width: 1.2),
         color: Theme.of(context).inputDecorationTheme.fillColor,
       ),

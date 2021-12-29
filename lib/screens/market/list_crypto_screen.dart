@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 import 'crypto_detail_screen.dart';
 
@@ -90,11 +91,11 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                   bottom: BorderSide(width: 0.6, color: Color(0xFFE8E8E8))),
             ),
             child: Container(
-              height: 40.0,
+              // height: 40.0,
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                border: Border.all(width: 0.7, color: const Color(0xFFECEFF3)),
+                border: Border.all(width: 0.7, color: Get.theme.dividerColor),
                 borderRadius: BorderRadius.circular(5.0),
               ),
               child: Center(
@@ -105,7 +106,7 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                     Flexible(
                       child: TextField(
                         style: const TextStyle(
-                            fontSize: 15.0, color: Colors.black87),
+                            fontSize: 15.0, ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Tìm kiếm',
@@ -152,12 +153,13 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
           child: RefreshIndicator(
             onRefresh: _refreshDataCrypto,
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
               child: (() {
                 if (_listCryptoDisplay != null) {
                   return ListView.builder(
                     physics: const AlwaysScrollableScrollPhysics(),
                     itemCount: _listCryptoDisplay!.length,
-                    itemExtent: 80.0,
+                    // itemExtent: 80.0,
                     controller: _scrollController,
                     itemBuilder: (context, index) {
                       // footer loading effect.
@@ -170,6 +172,8 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (_listCryptoDisplay![index].status == 1) ...[
+
+
                             CryptoItem(
                               cryptoIcon:
                                   '${_listCryptoDisplay![index].cryptoIcon}',
@@ -178,7 +182,6 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                               cryptoName:
                                   '${_listCryptoDisplay![index].cryptoName}',
                               isUp: _listCryptoDisplay![index].isUp ?? false,
-                              backgroundColor: Colors.black12,
                               trailing: const Text(
                                 'Đang bảo trì...',
                                 style: TextStyle(
@@ -189,24 +192,77 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                               onTap: () {},
                             ),
                           ] else ...[
-                            CryptoItem(
-                              cryptoIcon:
-                                  '${_listCryptoDisplay![index].cryptoIcon}',
-                              cryptoShortName:
-                                  '${_listCryptoDisplay![index].cryptoShortName}',
-                              cryptoName:
-                                  '${_listCryptoDisplay![index].cryptoName}',
-                              dataChart: _listCryptoDisplay![index].dataChart,
-                              isUp: _listCryptoDisplay![index].isUp ?? false,
-                              cryptoPriceNow: formatCurrency.format(
-                                  _listCryptoDisplay![index].cryptoPriceNow),
-                              upOrDownPercent:
-                                  _listCryptoDisplay![index].upOrDownPercent,
-                              onTap: () {
-                                Navigator.of(context).push(
-                                    createRoute(const CryptoDetailScreen(cryptoId: '')));
-                              },
+                            GroupItem(
+                              padding: EdgeInsets.all(10.0),
+                              margin: EdgeInsets.only(top: 10.0),
+                              children: [
+                                Item(
+                                  arrow: false,
+                                  leading: Row(
+                                    children: [
+                                      Image.asset('assets/icons/crypto/${_listCryptoDisplay![index].cryptoIcon}', width: 42.0),
+                                      SizedBox(width: 10.0),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${_listCryptoDisplay![index].cryptoShortName}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16.0
+                                            ),
+                                          ),
+                                          SizedBox(height: 5.0),
+                                          Text(
+                                            '${_listCryptoDisplay![index].cryptoName}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 14.0,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  trailing: Row(
+                                    children: [
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Text(
+                                            '${formatCurrency.format(
+                                                _listCryptoDisplay![index].cryptoPriceNow)}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 16.0
+                                            ),
+                                          ),
+                                          SizedBox(height: 5.0),
+                                          Text(
+                                            '${_listCryptoDisplay![index].upOrDownPercent}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 14.0,
+                                              color: _listCryptoDisplay![index].isUp == true ? Colors.green : Colors.red
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        createRoute(const CryptoDetailScreen(cryptoId: '')));
+                                  },
+                                ),
+                              ],
                             ),
+
                           ]
                           // Text("${snapshot.data![index].body}"),
                         ],

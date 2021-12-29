@@ -66,10 +66,9 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
 
 
           Text(
-            'Số lượng',
+            'Số lượng'.toUpperCase(),
             style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -78,10 +77,9 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
 
           SizedBox(height: 20.0),
           Text(
-            'Chọn phương thức thanh toán',
+            'Chọn phương thức rút tiền'.toUpperCase(),
             style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16.0,
+              fontSize: 14.0,
               fontWeight: FontWeight.w400,
             ),
           ),
@@ -244,11 +242,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
               Item(
                 title: 'PHƯƠNG THỨC THANH TOÁN',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 subTitle: 'Vietcombank - Ngân hàng TMCP ngoại thương viêt nam',
                 borderBottom: true,
@@ -258,11 +256,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
                 title: 'CHI NHÁNH',
                 subTitle: 'CN TÂY ĐO',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -271,11 +269,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
                 title: 'TÀI KHOẢN',
                 subTitle: '101589752',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -285,11 +283,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
                 title: 'CHỦ TÀI KHOẢN',
                 subTitle: 'CÔNG TY CỔ PHẦN TRUST CARD',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -298,11 +296,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
                 title: 'SỐ LƯỢNG',
                 subTitle: '200,000 VNDT',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -312,11 +310,11 @@ class _WalletWithdrawScreenState extends State<WalletWithdrawScreen> {
                 title: 'NỘI DUNG GIAO DỊCH',
                 subTitle: 'CK OID123459',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 arrow: false,
                 trailing: Text('Sao chép', style: TextStyle(color: Colors.blue[900], fontSize: 15.0)),

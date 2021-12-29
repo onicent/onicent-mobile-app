@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:onicent/widgets/widgets.dart';
 
 class MyADSItem extends StatefulWidget {
   final bool isBuy;
@@ -40,34 +41,18 @@ class _MyADSItemState extends State<MyADSItem> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.onTab ?? () {},
-      child: Container(
-        margin: EdgeInsets.only(bottom: 0.0),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFFFFFFFF),
-              Color(0xFFFFFFFF),
-            ],
-            begin: FractionalOffset(0.0, 0.0),
-            end: FractionalOffset(5.0, 0.0),
-            stops: [0.0, 1.0],
-            tileMode: TileMode.clamp,
-          ),
-          border: Border(
-            top: BorderSide(width: 0.5, color: Color(0xFFE8E8E8)),
-            bottom: BorderSide(width: 0.5, color: Color(0xFFE8E8E8)),
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Container(
+      margin: EdgeInsets.only(bottom: 10.0),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(6.0),
+        onTap: widget.onTab ?? () {},
+        child: GroupItem(
+          margin: EdgeInsets.all(0.0),
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
+              padding:
+              const EdgeInsets.symmetric(horizontal: 0.0, vertical: 10.0),
+              decoration: const BoxDecoration(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -76,7 +61,7 @@ class _MyADSItemState extends State<MyADSItem> {
                       Icon(
                         Icons.circle,
                         size: 10.0,
-                        color: widget.isOnline? Colors.green : Colors.grey,
+                        color: widget.isOnline ? Colors.green : Colors.grey,
                       ),
                       const SizedBox(width: 5.0),
                       Text(
@@ -88,26 +73,29 @@ class _MyADSItemState extends State<MyADSItem> {
                         ),
                       ),
                       const SizedBox(width: 5.0),
+
                     ],
                   ),
-                  SizedBox(child: widget.isKYC? Row(
-                    children: const [
-                      Icon(
-                        Icons.verified_user,
-                        color: Colors.green,
-                        size: 16.0,
-                      ),
-                      SizedBox(width: 5.0),
-                      Text(
-                        'Đã KYC',
-                        style: TextStyle(
-                          fontSize: 13.0,
-                          color: Colors.black87,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ): null),
+                  SizedBox(
+                      child: widget.isKYC
+                          ? Row(
+                        children: const [
+                          Icon(
+                            Icons.verified_user,
+                            color: Colors.green,
+                            size: 16.0,
+                          ),
+                          SizedBox(width: 5.0),
+                          Text(
+                            'Đã KYC',
+                            style: TextStyle(
+                              fontSize: 13.0,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      )
+                          : null),
                 ],
               ),
             ),
@@ -117,49 +105,42 @@ class _MyADSItemState extends State<MyADSItem> {
             //   width: MediaQuery.of(context).size.width,
             // ),
             Container(
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 15.0),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
+              padding: const EdgeInsets.only(bottom: 15.0),
+              decoration: const BoxDecoration(),
               child: Column(
                 children: [
                   Row(
                     children: [
                       Flexible(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Row(
-                                children: [
-                                  Text(
-                                      '${formatCurrency.format(widget.cryptoPrice)} ${widget.basicMoney}',
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                      textAlign: TextAlign.left),
-                                  Text('/${widget.cryptoName}',
-                                      style: const TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.black87,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                      textAlign: TextAlign.left),
-                                ],
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                    '${formatCurrency.format(widget.cryptoPrice)} ${widget.basicMoney}',
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                    textAlign: TextAlign.left),
+                                Text(
+                                  '/${widget.cryptoName}',
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
                             ),
                             const SizedBox(height: 8.0),
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                  'Tối đa: ${widget.cryptoAmount} ${widget.cryptoName}',
-                                  style: const TextStyle(
-                                    fontSize: 14.0,
-                                    color: Colors.black,
-                                  ),
-                                  textAlign: TextAlign.left),
+                            Text(
+                              'Tối đa: ${widget.cryptoAmount} ${widget.cryptoName}',
+                              style: const TextStyle(
+                                fontSize: 14.0,
+                              ),
+                              textAlign: TextAlign.left,
                             ),
                           ],
                         ),
@@ -168,22 +149,24 @@ class _MyADSItemState extends State<MyADSItem> {
                         width: 50.0,
                         height: 30.0,
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: widget.isBuy
-                                  ? Colors.green
-                                  : Colors.deepOrangeAccent,
-                              width: 1.2,
-                            ),
-                            borderRadius: BorderRadius.circular(3.0)),
+                          border: Border.all(
+                            color: widget.isBuy
+                                ? Colors.green
+                                : Colors.deepOrangeAccent,
+                            width: 1.2,
+                          ),
+                          borderRadius: BorderRadius.circular(3.0),
+                        ),
                         child: Center(
                           child: Text(
                             widget.isBuy ? 'Mua' : 'Bán',
                             style: TextStyle(
-                                color: widget.isBuy
-                                    ? Colors.green
-                                    : Colors.deepOrangeAccent,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.w400),
+                              color: widget.isBuy
+                                  ? Colors.green
+                                  : Colors.deepOrangeAccent,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
                         ),
                       ),

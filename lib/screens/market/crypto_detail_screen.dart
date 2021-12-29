@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:onicent/models/market/crypto_detail_model.dart';
 import 'package:onicent/services/fetch_api_crypto_detail.dart';
 import 'package:flutter/material.dart';
@@ -97,22 +98,24 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
           if (_cryptoDetail != null) {
             return Column(
               children: [
+
                 Flexible(
                   child: RefreshIndicator(
                     onRefresh: _refreshDataCrypto,
-                    child: ListView(
-                      children: [
-                        if (isCandleChart) ...[
-                          CryptoCandlestickChart(),
-                        ] else ...[
-                          Container(
-                            decoration: const BoxDecoration(color: Colors.white),
-                            child: Column(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                      child: ListView(
+                        children: [
+                          if (isCandleChart) ...[
+                            CryptoCandlestickChart(),
+                          ] else ...[
+
+                            GroupItem(
+                              padding: EdgeInsets.all(15.0),
                               children:  [
                                 SizedBox(height: 5.0),
                                 Container(
                                   height: 460.0,
-                                  padding: EdgeInsets.all(15.0),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -162,46 +165,28 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                                       SizedBox(height: 10.0),
                                       Flexible(
                                         child: Container(
-                                          child: CryptoChartScreen(),
+                                          // child: CryptoChartScreen(),
+                                          child: null,
                                         ),
                                       ),
 
                                       Row(
                                         children: [
                                           Flexible(
-                                            child: SingleChildScrollView(
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                children: <Widget>[
-                                                  _itemBottom(title: '1H', backgroundColor: Colors.blue[800], colorTitle: Colors.white),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '1D'),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '1W'),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '1M'),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '1Y'),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '3Y'),
-                                                  SizedBox(width: 12.0),
-                                                  _itemBottom(title: '5Y'),
-                                                ],
-                                              ),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: <Widget>[
+                                                _itemBottom(title: '1H', backgroundColor: Colors.blue[800], colorTitle: Colors.white),
+                                                _itemBottom(title: '4H'),
+                                                _itemBottom(title: '1D'),
+                                                _itemBottom(title: '1W'),
+                                                _itemBottom(title: '1M'),
+                                                _itemBottom(title: '1Y'),
+                                              ],
                                             ),
                                           ),
-                                          SizedBox(width: 12.0),
-                                          _itemBottom(icon: Image.asset(
-                                            'assets/icons/icon_line_chart.png',
-                                            width: 16.0,
-                                            color: Colors.black54,
-                                          )),
-                                          SizedBox(width: 12.0),
-                                          _itemBottom(icon: Image.asset(
-                                            'assets/icons/icon_candle_chart.png',
-                                            width: 18.0,
-                                            color: Colors.white,
-                                          ),backgroundColor: Colors.blue[800],),
+
+
                                         ],
                                       ),
                                       SizedBox(height: 2.0),
@@ -210,24 +195,16 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                                 ),
                               ],
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 10.0),
-                            child: const Text(
+
+                            Text(
                               'Dữ liệu',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.all(15.0),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                            ),
-                            child: Column(
+                            GroupItem(
+                              padding: EdgeInsets.all(15.0),
                               children: [
                                 _itemInfo(
                                   title: 'Khối lượng 24H',
@@ -289,14 +266,14 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                                   children: [
                                     Container(
                                       height: 15.0,
-                                      width: (MediaQuery.of(context).size.width * (_cryptoDetail!.buyingPower! / 100)) - 15.0,
+                                      width: (MediaQuery.of(context).size.width * (_cryptoDetail!.buyingPower! / 100)) - 25.0,
                                       color: Color(0xFFFC2222),
                                     ),
                                     Container(
                                       height: 15.0,
                                       width: (MediaQuery.of(context).size.width *
                                           ((100 - _cryptoDetail!.buyingPower!)/100)) -
-                                          15.0,
+                                          25.0,
                                       color: Color(0xFF27DC02),
                                     ),
                                   ],
@@ -324,47 +301,44 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                                 ),
                               ],
                             ),
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15.0, vertical: 10.0),
-                            child: const Text(
+
+                            Text(
                               'Giới thiệu',
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
                               ),
                             ),
-                          ),
-                          const SizedBox(height: 5.0),
-                          Container(
-                            padding: EdgeInsets.all(15.0),
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
+                            const SizedBox(height: 5.0),
+                            GroupItem(
+                              padding: EdgeInsets.all(15.0),
+                              children: [
+                                Text(
+                                  '${_cryptoDetail!.introduce}',
+                                  style: const TextStyle(
+                                    fontSize: 15.0,
+                                    height: 1.7,
+                                  ),
+                                ),
+                              ],
                             ),
-                            child: Text(
-                              '${_cryptoDetail!.introduce}',
-                              style: const TextStyle(
-                                fontSize: 15.0,
-                                height: 1.7,
-                              ),
-                            ),
-                          ),
-                        ]
-                      ],
+                          ]
+                        ],
+                      ),
                     ),
                   ),
                 ),
+
                 Container(
                   width: MediaQuery.of(context).size.width,
                   height: 70.0,
                   decoration: const BoxDecoration(
                     border: Border(
-                      top: BorderSide(width: 1.0, color: Color(0xFFF5F4F4)),
+                      // top: BorderSide(width: 1.0, color: Color(0xFFF5F4F4)),
                     ),
                   ),
                   child: Material(
-                    color: Colors.white,
+                    color: Colors.transparent,
                     child: Row(
                       children: [
                         Expanded(
@@ -402,29 +376,23 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
     String title = '',
     String value = '',
   }) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 10.0),
-      decoration: const BoxDecoration(
-          border:
-              Border(bottom: BorderSide(width: 0.5, color: Color(0xFFF1F2F6)))),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 15.0,
-            ),
-          ),
-          Text(
-            value,
-            style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 15.0,
-                fontWeight: FontWeight.w600),
-          ),
-        ],
+    return Item(
+      arrow: false,
+      height: 45.0,
+      borderBottom: true,
+      leading: Text(
+        title,
+        style: TextStyle(
+          color: Colors.grey,
+          fontSize: 15.0,
+        ),
+      ),
+      trailing: Text(
+        value,
+        style: TextStyle(
+          fontSize: 15.0,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     );
   }
@@ -444,7 +412,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
             builder: (BuildContext context) {
               return Container(
                 height: 350,
-                color: Colors.white,
+                color: Get.theme.backgroundColor,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -496,7 +464,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
                                           ),
                                           SizedBox(width: 5.0),
                                           Container(
-                                            color: Color(0xFFEFF2F6),
+                                            color: Get.theme.backgroundColor,
                                             width: 1.0,
                                             height: 30.0,
                                           ),
@@ -621,6 +589,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
       ),
     );
   }
+
   Widget _itemBottom({
     String? title,
     Widget? icon,
@@ -632,6 +601,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
     return Material(
       child: InkWell(
         onTap: onTap,
+        borderRadius: BorderRadius.circular(5.0),
         child: Ink(
           width: 45.0,
           height: 28.0,
@@ -639,7 +609,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5.0),
             // border: Border.all(width: 1.0, color: const Color(0xffeeeff3)),
-            color: backgroundColor ?? const Color(0xffeeeff3),
+            color: backgroundColor ?? Get.theme.backgroundColor,
           ),
           child: Center(
             child: icon ?? Text(
@@ -647,7 +617,7 @@ class _CryptoDetailScreenState extends State<CryptoDetailScreen> {
               style: TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 15.0,
-                color: colorTitle ?? Colors.black54,
+                // color: colorTitle ?? Colors.black54,
               ),
             ),
           ),

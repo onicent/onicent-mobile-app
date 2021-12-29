@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 
 import 'package:flutter/services.dart';
@@ -40,8 +41,7 @@ class _CryptoChartScreenState extends State<CryptoChartScreen> {
     chartColors.ma5Color = Colors.yellow;
     chartColors.ma10Color = Colors.lightGreen;
     chartColors.ma30Color = Colors.purple;
-    chartColors.gridColor = const Color(0xFFF6F6F8);
-
+    chartColors.gridColor = Get.theme.dividerColor;
     super.initState();
     getData('1day');
     rootBundle.loadString('assets/depth.json').then((result) {

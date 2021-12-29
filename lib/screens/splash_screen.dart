@@ -36,7 +36,7 @@ class _SplashState extends State<SplashScreen> {
       backgroundColor: Color(0xff023e82),
       body: Center(
         child: Container(
-          child: Text('Megacoin', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.w600),),
+          child: Text('Onicent', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.w600),),
         ),
       ),
     );

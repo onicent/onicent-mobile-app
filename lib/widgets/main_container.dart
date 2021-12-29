@@ -52,7 +52,7 @@ class _MainContainer extends State<MainContainer> {
     List<Widget> _widgetOptions = <Widget>[
       const HomeScreen(),
       MarketScreen(dataListCrypto: dataCrypto),
-      const P2PScreen(),
+      P2PScreen(),
       const WalletScreen(),
       const HubScreen(),
     ];

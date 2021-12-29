@@ -19,7 +19,7 @@ class ButtonPress extends StatefulWidget {
     this.onPress,
     this.height,
     this.width,
-    this.borderRadius = 50.0,
+    this.borderRadius = 6.0,
     this.child,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class _ButtonPressState extends State<ButtonPress> {
       borderRadius: BorderRadius.circular(widget.borderRadius),
       splashColor: Colors.blue[900],
       child: Ink(
-        height: widget.height ?? 46.0,
+        height: widget.height ?? 48.0,
         width: widget.width ?? double.infinity,
         decoration: BoxDecoration(
           color: widget.backgroundColor ?? Color(0xFF1f47cd),

@@ -45,7 +45,7 @@ class ThemeNotifier with ChangeNotifier {
   final lightTheme = ThemeData(
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xFFf6f7fb),
+      backgroundColor: Color(0xFFFFFFFF),
       titleTextStyle: TextStyle(
         color: Colors.black87,
         fontSize: 18.0,

@@ -278,6 +278,9 @@ class _WalletScreenState extends State<WalletScreen> {
                     ),
                   ),
                   borderBottom: true,
+                  onTap: (){
+                    Get.to(CryptoScreen());
+                  },
                 ),
                 Item(
                   height: 70,

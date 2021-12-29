@@ -18,7 +18,7 @@ class _CryptoSwapScreenState extends State<CryptoSwapScreen> {
       appBar: AppBar(
         title: Text('Quy đổi'),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
+      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
       body: Column(
         children: [
           GroupItem(children: [
@@ -129,7 +129,7 @@ class _CryptoSwapScreenState extends State<CryptoSwapScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 30.0),
           ],),
           SizedBox(height: 15.0),
           GroupItem(

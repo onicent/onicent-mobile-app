@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'widgets.dart';
 import 'package:chart_sparkline/chart_sparkline.dart';
 
@@ -41,7 +42,7 @@ class _CryptoItemState extends State<CryptoItem> {
     return WrapCard(
       onTab: widget.onTap,
       height: widget.height,
-      backgroundColor: widget.backgroundColor,
+      backgroundColor: widget.backgroundColor ?? Get.theme.backgroundColor,
       child: Row(
         children: [
           Image.asset(
@@ -60,7 +61,6 @@ class _CryptoItemState extends State<CryptoItem> {
                     widget.cryptoShortName,
                     style: const TextStyle(
                         fontSize: 16.0,
-                        color: Colors.black87,
                         fontWeight: FontWeight.w500),
                   ),
                 ),
@@ -73,7 +73,6 @@ class _CryptoItemState extends State<CryptoItem> {
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 13.0,
-                      color: Colors.black54,
                     ),
                   ),
                 ),
@@ -97,8 +96,8 @@ class _CryptoItemState extends State<CryptoItem> {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: widget.isUp
-                        ? [const Color(0xFFBEFFB3), const Color(0x00ffffff)]
-                        : [const Color(0xFFFDC5C5), const Color(0x00ffffff)],
+                        ? [const Color(0x00ffffff), const Color(0x00ffffff)]
+                        : [const Color(0x00ffffff), const Color(0x00ffffff)],
                   ),
                   useCubicSmoothing: true,
                   cubicSmoothingFactor: 0.1,
@@ -120,7 +119,6 @@ class _CryptoItemState extends State<CryptoItem> {
                       style: const TextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w600,
-                        color: Colors.black87,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

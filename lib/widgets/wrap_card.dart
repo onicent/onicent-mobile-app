@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WrapCard extends StatefulWidget {
   final Function()? onTab;
@@ -34,9 +35,9 @@ class _WrapCardState extends State<WrapCard> {
           padding: widget.padding?? const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15.0),
           decoration: BoxDecoration(
               color: widget.backgroundColor ?? Theme.of(context).colorScheme.background,
-              border: const Border.symmetric(
-                horizontal: BorderSide(width: 0.5, color: Color(0xFFF5F4F4)),
-                vertical: BorderSide(width: 0.3, color: Color(0xFFF5F4F4)),
+              border: Border.symmetric(
+                horizontal: BorderSide(width: 0.5, color:Get.theme.dividerColor),
+                vertical: BorderSide(width: 0.3,  color:Get.theme.dividerColor),
               ),
           ),
           child: widget.child,

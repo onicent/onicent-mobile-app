@@ -1,34 +1,37 @@
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 
 class WalletDepositScreen extends StatelessWidget {
   WalletDepositScreen({Key? key}) : super(key: key);
 
-  var paymentMethod = 'Bấm vào để lựa chọn'.obs;
-  var onLoad = SizedBox(child: Text('Mua', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),)).obs;
+  var paymentMethodTitle = 'Bấm vào để lựa chọn'.obs;
+  var progressTitle = SizedBox(child: Text('Mua',style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w600)));
+  var progressOnLoad = SizedBox(
+      height: 24.0,
+      width: 24,
+      child: CircularProgressIndicator(strokeWidth: 2.5));
+  RxBool onLoad = false.obs;
 
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
-      padding: EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(15.0),
       appBar: AppBar(
-        title: Text('Mua VNDT'),
+        title: const Text('MUA VNDT'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'SỐ LƯỢNG',
             style: TextStyle(
-              fontSize: 13.0,
+              fontSize: 14.0,
             ),
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           TextFieldInput(
             trailingBackground: Theme.of(context).backgroundColor,
-            // trailingWidth: 60.0,
             trailing: Container(
               padding: EdgeInsets.only(left: 20.0),
               child: Text(
@@ -37,14 +40,14 @@ class WalletDepositScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 30.0),
-          Text(
+          const SizedBox(height: 20.0),
+          const Text(
             'CHỌN PHƯƠNG THỨC THANH TOÁN',
             style: TextStyle(
-              fontSize: 13.0,
+              fontSize: 14.0,
             ),
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Obx(
             () => InkWell(
               onTap: () => Get.to(
@@ -54,26 +57,25 @@ class WalletDepositScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(50.0),
               child: TextFieldInput(
                 enabled: false,
-                hintText: '${paymentMethod}',
+                hintText: '${paymentMethodTitle}',
                 trailing: Icon(Icons.arrow_drop_down, size: 18.0),
               ),
             ),
           ),
-          SizedBox(height: 40.0),
+          const SizedBox(height: 40.0),
           ButtonPress(
             onPress: () {
-              onLoad.value = SizedBox(
-                  height: 24.0,
-                  width: 24,
-                  child: CircularProgressIndicator(strokeWidth: 2.5));
+              onLoad.value = true;
               Future.delayed(const Duration(seconds: 3), () {
                 // deleayed code here
-                onLoad.value = SizedBox(child: Text('Mua',style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600)));
+                onLoad.value = false;
                 Get.to(_transferInfo());
               });
             },
             title: 'Mua',
-            child: Obx(() => onLoad.value),
+            child: Obx(() => Container(
+              child: onLoad == true ? progressOnLoad: progressTitle,
+            )),
           ),
         ],
       ),
@@ -93,7 +95,7 @@ class WalletDepositScreen extends StatelessWidget {
           Text(
             'CHỌN PHƯƠNG THỨC THANH TOÁN',
             style: TextStyle(
-              fontSize: 13.0,
+              fontSize: 14.0,
             ),
           ),
           SizedBox(height: 20.0),
@@ -127,7 +129,7 @@ class WalletDepositScreen extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      paymentMethod.value = 'Vietcombank- vcb';
+                      paymentMethodTitle.value = 'Vietcombank- vcb';
                       Get.back();
                       // update();
                     },
@@ -148,7 +150,7 @@ class WalletDepositScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      paymentMethod.value = 'Vietcombank- vcb';
+                      paymentMethodTitle.value = 'Vietcombank- vcb';
                       Get.back();
                       // update();
                     },
@@ -201,11 +203,11 @@ class WalletDepositScreen extends StatelessWidget {
               Item(
                 title: 'PHƯƠNG THỨC THANH TOÁN',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 subTitle: 'Vietcombank - Ngân hàng TMCP ngoại thương viêt nam',
                 borderBottom: true,
@@ -215,11 +217,11 @@ class WalletDepositScreen extends StatelessWidget {
                 title: 'CHI NHÁNH',
                 subTitle: 'CN TÂY ĐO',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -228,11 +230,11 @@ class WalletDepositScreen extends StatelessWidget {
                 title: 'TÀI KHOẢN',
                 subTitle: '101589752',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -242,11 +244,11 @@ class WalletDepositScreen extends StatelessWidget {
                 title: 'CHỦ TÀI KHOẢN',
                 subTitle: 'CÔNG TY CỔ PHẦN TRUST CARD',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -255,11 +257,11 @@ class WalletDepositScreen extends StatelessWidget {
                 title: 'SỐ LƯỢNG',
                 subTitle: '200,000 VNDT',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 borderBottom: true,
                 arrow: false,
@@ -269,11 +271,11 @@ class WalletDepositScreen extends StatelessWidget {
                 title: 'NỘI DUNG GIAO DỊCH',
                 subTitle: 'CK OID123459',
                 titleStyle: TextStyle(
-                  fontSize: 13.0,
+                  fontSize: 14.0,
                   color: Colors.grey,
                 ),
                 subTitleStyle: TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 16.0,
                 ),
                 arrow: false,
                 trailing: Text('Sao chép', style: TextStyle(color: Colors.blue[900], fontSize: 15.0)),
@@ -283,37 +285,37 @@ class WalletDepositScreen extends StatelessWidget {
           ),
           GroupItem(
             children: const [
-              SizedBox(height: 15),
               Item(
-                height: 30.0,
+                height: 50.0,
                 title: 'CHÚ Ý',
                 arrow: false,
               ),
               Item(
-                height: 40.0,
+                height: 50.0,
+                borderBottom: true,
                 title: 'Đúng số tiền(bao gồm phí chuyển khoản)',
                 titleStyle: TextStyle(
-                    fontSize: 15.0
+                    fontSize: 16.0
                 ),
                 arrow: false,
               ),
               Item(
-                height: 40.0,
+                height: 50.0,
+                borderBottom: true,
                 title: 'Đúng nội dung',
                 titleStyle: TextStyle(
-                  fontSize: 15.0
+                  fontSize: 16.0
                 ),
                 arrow: false,
               ),
               Item(
-                height: 40.0,
+                height: 50.0,
                 title: 'Chuyển 24/7 nếu khác ngân hàng',
                 titleStyle: TextStyle(
-                    fontSize: 15.0
+                    fontSize: 16.0
                 ),
                 arrow: false,
               ),
-              SizedBox(height: 15),
             ],
           ),
           GroupItem(

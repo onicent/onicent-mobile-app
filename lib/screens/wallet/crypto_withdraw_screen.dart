@@ -4,6 +4,7 @@ import 'dart:io';
 // import 'package:onicent/screens/hub/bank_link.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../widgets/widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter/services.dart';
@@ -31,6 +32,7 @@ class _CryptoWithdrawScreenState extends State<CryptoWithdrawScreen> {
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GroupItem(
               children: [
@@ -70,66 +72,57 @@ class _CryptoWithdrawScreenState extends State<CryptoWithdrawScreen> {
             ),
 
             SizedBox(height: 10.0),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Mạng lưới',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
+
+            Text(
+              'Mạng lưới'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w400,
               ),
             ),
+            SizedBox(height: 10.0),
 
-            SizedBox(height: 20.0),
             Container(
-              height: 48.0,
               width: double.infinity,
+              height: 48.0,
               padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 0.0),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(50.0),
-                border: Border.all(color: Color(0xFFEFF2F6), width: 1.0),
+                color: Get.theme.inputDecorationTheme.fillColor,
+                borderRadius: BorderRadius.circular(6.0),
+                border: Border.all(color: Get.theme.dividerColor, width: 1.0),
               ),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: DropdownButton<String>(
-                  value: dropdownValue,
-                  iconSize: 22,
-                  elevation: 24,
-                  style: const TextStyle(color: Colors.black, fontSize: 14.0),
-                  underline: Container(height: 0),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownValue = newValue!;
-                    });
-                  },
-                  items: <String>['ERC20', 'TRC20', 'BEP']
-                      .map<DropdownMenuItem<String>>((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text('Mạng lưới: ' + value, style: TextStyle(fontSize: 16.0),),
-                    );
-                  }).toList(),
-                ),
+              child: DropdownButton<String>(
+                value: dropdownValue,
+                // iconSize: 22,
+                elevation: 24,
+                style: const TextStyle(fontSize: 14.0),
+                underline: Container(height: 0),
+                borderRadius: BorderRadius.circular(6.0),
+
+                onChanged: (String? newValue) {
+                  // setState(() {
+                  //   dropdownValue = newValue!;
+                  // });
+                },
+                items: <String>['ERC20', 'TRC20', 'BEP']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text('Mạng lưới: ' + value),
+                  );
+                }).toList(),
               ),
             ),
-
             SizedBox(height: 20.0),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Địa chỉ ví',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
+
+            Text(
+              'Địa chỉ ví'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w400,
               ),
             ),
-
-            SizedBox(height: 20.0),
+            SizedBox(height: 10.0),
             TextFieldInput(
               trailing: Row(
                 children: [
@@ -169,17 +162,13 @@ class _CryptoWithdrawScreenState extends State<CryptoWithdrawScreen> {
                 ],
               ),
             ),
-
             SizedBox(height: 20.0),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Số lương',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
+
+            Text(
+              'Số lương'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 13.0,
+                fontWeight: FontWeight.w400,
               ),
             ),
             SizedBox(height: 10.0),
@@ -208,6 +197,7 @@ class _CryptoWithdrawScreenState extends State<CryptoWithdrawScreen> {
             ButtonPress(
               title: 'Gửi',
             ),
+
           ],
         ),
       ),
