@@ -30,7 +30,7 @@ class TextFieldInput extends StatefulWidget {
     this.trailing,
     this.trailingWidth,
     this.trailingBackground,
-    this.enabled = true
+    this.enabled = true,
 
   }) : super(key: key);
 

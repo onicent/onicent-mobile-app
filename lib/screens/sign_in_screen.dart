@@ -186,7 +186,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    Locales.string(context, 'Dont_have_an_account'),
+                    Locales.string(context, 'dont_have_an_account'),
                     style: const TextStyle(
                       fontSize: 16.0,
                     ),

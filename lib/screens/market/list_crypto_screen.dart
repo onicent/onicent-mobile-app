@@ -85,10 +85,11 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
         if (widget.isShowSearch) ...[
           Container(
             padding: const EdgeInsets.all(15.0),
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Get.theme.backgroundColor,
               border: Border(
-                  bottom: BorderSide(width: 0.6, color: Color(0xFFE8E8E8))),
+                  // bottom: BorderSide(width: 0.6, color: Color(0xFFE8E8E8)),
+              ),
             ),
             child: Container(
               // height: 40.0,
@@ -97,6 +98,7 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
               decoration: BoxDecoration(
                 border: Border.all(width: 0.7, color: Get.theme.dividerColor),
                 borderRadius: BorderRadius.circular(5.0),
+                color: Get.theme.inputDecorationTheme.fillColor,
               ),
               child: Center(
                 child: Row(
@@ -106,7 +108,8 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                     Flexible(
                       child: TextField(
                         style: const TextStyle(
-                            fontSize: 15.0, ),
+                          fontSize: 15.0,
+                        ),
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Tìm kiếm',
@@ -149,6 +152,8 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
             ),
           ),
         ],
+
+
         Flexible(
           child: RefreshIndicator(
             onRefresh: _refreshDataCrypto,
@@ -172,8 +177,6 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           if (_listCryptoDisplay![index].status == 1) ...[
-
-
                             CryptoItem(
                               cryptoIcon:
                                   '${_listCryptoDisplay![index].cryptoIcon}',
@@ -200,29 +203,31 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                                   arrow: false,
                                   leading: Row(
                                     children: [
-                                      Image.asset('assets/icons/crypto/${_listCryptoDisplay![index].cryptoIcon}', width: 42.0),
+                                      Image.asset(
+                                          'assets/icons/crypto/${_listCryptoDisplay![index].cryptoIcon}',
+                                          width: 42.0),
                                       SizedBox(width: 10.0),
                                       Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             '${_listCryptoDisplay![index].cryptoShortName}',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 16.0
-                                            ),
+                                                fontSize: 16.0),
                                           ),
                                           SizedBox(height: 5.0),
                                           Text(
                                             '${_listCryptoDisplay![index].cryptoName}',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 14.0,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14.0,
                                               color: Colors.grey,
                                             ),
                                           ),
-
                                         ],
                                       ),
                                     ],
@@ -230,16 +235,16 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                                   trailing: Row(
                                     children: [
                                       Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.end,
                                         children: [
                                           Text(
-                                            '${formatCurrency.format(
-                                                _listCryptoDisplay![index].cryptoPriceNow)}',
+                                            '${formatCurrency.format(_listCryptoDisplay![index].cryptoPriceNow)}',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
-                                                fontSize: 16.0
-                                            ),
+                                                fontSize: 16.0),
                                           ),
                                           SizedBox(height: 5.0),
                                           Text(
@@ -247,23 +252,30 @@ class _ListCryptoScreenState extends State<ListCryptoScreen> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 14.0,
-                                              color: _listCryptoDisplay![index].isUp == true ? Colors.green : Colors.red
-                                            ),
+                                                color:
+                                                    _listCryptoDisplay![index]
+                                                                .isUp ==
+                                                            true
+                                                        ? Colors.green
+                                                        : Colors.red),
                                           ),
-
                                         ],
                                       ),
                                     ],
                                   ),
                                   onTap: () {
-                                    Navigator.of(context).push(
-                                        createRoute(const CryptoDetailScreen(cryptoId: '')));
+                                    Navigator.of(context).push(createRoute(
+                                        const CryptoDetailScreen(
+                                            cryptoId: '')));
                                   },
                                 ),
                               ],
                             ),
+                          ],
 
-                          ]
+                          if (_listCryptoDisplay!.length == index + 1) ...[
+                            const SizedBox(height: 10.0),
+                          ],
                           // Text("${snapshot.data![index].body}"),
                         ],
                       );

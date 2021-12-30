@@ -1,10 +1,12 @@
-import 'package:flutter/cupertino.dart';
-import 'package:onicent/utilities/locales/flutter_locales.dart';
-import 'package:onicent/widgets/button_press.dart';
-import 'package:onicent/widgets/empty_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:onicent/widgets/text_field_input.dart';
+import 'package:onicent/models/sign_up/list_of_country_model.dart';
+
+import '../utilities/locales/flutter_locales.dart';
+import '../widgets/button_press.dart';
+import '../widgets/empty_screen.dart';
+import '../widgets/text_field_input.dart';
+import '../services/api/sign_up/list_of_country.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -13,20 +15,20 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return EmptyScreen(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
       ),
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(15.0),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Nhận ngay Crypto miễn phí',
+            Locales.string(context, 'title_fist_screen_sign_up'),
             style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 20.0),
           Text(
-            '100% cơ hội nhận Bitcoin, Etherium, miễn phí, khi đăng ký thành công.',
+            Locales.string(context, 'content_fist_screen_sign_up'),
             style: const TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.w400,
@@ -37,12 +39,12 @@ class SignUpScreen extends StatelessWidget {
             onPress: () => Get.to(ChooseCountry()),
             title: Locales.string(context, 'sign_up'),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           ButtonPress(
             onPress: () => Get.back(),
             title: Locales.string(context, 'sign_in'),
           ),
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
         ],
       ),
     );
@@ -50,66 +52,71 @@ class SignUpScreen extends StatelessWidget {
 }
 
 class ChooseCountry extends StatelessWidget {
-  const ChooseCountry({Key? key}) : super(key: key);
+  ChooseCountry({Key? key}) : super(key: key);
+
+  List<ListOfCountryModel>? dataListOfCountry;
 
   @override
   Widget build(BuildContext context) {
     return EmptyScreen(
       appBar: AppBar(
-        title: Text(''),
+        title: const Text(''),
       ),
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(15.0),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Chọn quốc gia',
-            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
+            Locales.string(context, 'select_country'),
+            style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w600),
           ),
-          SizedBox(
-            height: 20.0,
-          ),
+          const SizedBox(height: 20.0),
           TextFieldInput(
-            leading: Icon(Icons.search),
-            hintText: 'Tìm kiếm',
+            leading: const Icon(Icons.search),
+            hintText: Locales.string(context, 'search'),
           ),
-          SizedBox(
-            height: 15.0,
-          ),
+          const SizedBox(height: 15.0),
           Flexible(
             child: Container(
               height: double.infinity,
               child: ListView(
                 children: [
                   InkWell(
-                    onTap: ()=>Get.to(InputName()),
+                    onTap: () => Get.to(InputName()),
                     child: Ink(
                       height: 60.0,
                       decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1.0),
+                          bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                              width: 1.0),
                         ),
                       ),
                       child: Row(
                         children: [
+                          Image.asset(
+                            'assets/images/flags/vn.png',
+                            width: 24.0,
+                          ),
+                          SizedBox(width: 10.0),
                           Text(
                             'Việt Nam',
                             style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w400
-                            ),
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
                   ),
                   InkWell(
-                    onTap: ()=>Get.to(InputName()),
+                    onTap: () => Get.to(InputName()),
                     child: Ink(
                       height: 60.0,
                       decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1.0),
+                          bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                              width: 1.0),
                         ),
                       ),
                       child: Row(
@@ -117,21 +124,21 @@ class ChooseCountry extends StatelessWidget {
                           Text(
                             'Việt Nam',
                             style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w400
-                            ),
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
                   ),
                   InkWell(
-                    onTap: ()=>Get.to(InputName()),
+                    onTap: () => Get.to(InputName()),
                     child: Ink(
                       height: 60.0,
                       decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1.0),
+                          bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                              width: 1.0),
                         ),
                       ),
                       child: Row(
@@ -139,21 +146,21 @@ class ChooseCountry extends StatelessWidget {
                           Text(
                             'Việt Nam',
                             style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w400
-                            ),
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
                   ),
                   InkWell(
-                    onTap: ()=>Get.to(InputName()),
+                    onTap: () => Get.to(InputName()),
                     child: Ink(
                       height: 60.0,
                       decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1.0),
+                          bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                              width: 1.0),
                         ),
                       ),
                       child: Row(
@@ -161,21 +168,21 @@ class ChooseCountry extends StatelessWidget {
                           Text(
                             'Việt Nam',
                             style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w400
-                            ),
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
                   ),
                   InkWell(
-                    onTap: ()=>Get.to(InputName()),
+                    onTap: () => Get.to(InputName()),
                     child: Ink(
                       height: 60.0,
                       decoration: BoxDecoration(
                         border: Border(
-                          bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1.0),
+                          bottom: BorderSide(
+                              color: Theme.of(context).dividerColor,
+                              width: 1.0),
                         ),
                       ),
                       child: Row(
@@ -183,17 +190,12 @@ class ChooseCountry extends StatelessWidget {
                           Text(
                             'Việt Nam',
                             style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w400
-                            ),
+                                fontSize: 16.0, fontWeight: FontWeight.w400),
                           ),
                         ],
                       ),
                     ),
                   ),
-
-
-
                 ],
               ),
             ),
@@ -227,7 +229,10 @@ class InputName extends StatelessWidget {
           ),
           Text(
             'Vui lòng nhập họ tên đầy đủ.',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
           SizedBox(
             height: 40.0,
@@ -239,7 +244,7 @@ class InputName extends StatelessWidget {
             height: 40.0,
           ),
           ButtonPress(
-            onPress: ()=> Get.to(SignUp()),
+            onPress: () => Get.to(SignUp()),
             title: 'Tiếp tục',
           ),
         ],
@@ -270,7 +275,10 @@ class SignUp extends StatelessWidget {
           ),
           Text(
             'Sử dụng số điện thoại hoặc email.',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
           SizedBox(
             height: 40.0,
@@ -288,7 +296,7 @@ class SignUp extends StatelessWidget {
             height: 40.0,
           ),
           ButtonPress(
-            onPress: ()=> Get.to(VerifyAccount()),
+            onPress: () => Get.to(VerifyAccount()),
             title: 'Đăng ký',
           ),
         ],
@@ -315,7 +323,10 @@ class VerifyAccount extends StatelessWidget {
           ),
           Text(
             'Hãy nhập mã xác minh 5 chữ số \n dã được gửi đến số điện thoại \n 037***8055.',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
           SizedBox(
             height: 20.0,
@@ -326,10 +337,8 @@ class VerifyAccount extends StatelessWidget {
           SizedBox(
             height: 20.0,
           ),
-
-
           ButtonPress(
-            onPress: ()=>Get.to(BackToSignIn()),
+            onPress: () => Get.to(BackToSignIn()),
             title: 'Xác minh',
           ),
           SizedBox(
@@ -337,7 +346,10 @@ class VerifyAccount extends StatelessWidget {
           ),
           Text(
             'Bạn chưa nhận được mã xác thực? Gửi lại(53)',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
         ],
       ),
@@ -363,7 +375,10 @@ class BackToSignIn extends StatelessWidget {
           ),
           Text(
             'Hãy nhập mã xác minh 5 chữ số \n dã được gửi đến số điện thoại \n 037***8055.',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
           SizedBox(
             height: 30.0,
@@ -374,8 +389,6 @@ class BackToSignIn extends StatelessWidget {
           SizedBox(
             height: 30.0,
           ),
-
-
           ButtonPress(
             title: 'Đăng nhập',
           ),
@@ -384,11 +397,13 @@ class BackToSignIn extends StatelessWidget {
           ),
           Text(
             'Bạn chưa nhận được mã xác thực? Gửi lại(53)',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w400,
+                color: Colors.grey),
           ),
         ],
       ),
     );
   }
 }
-
