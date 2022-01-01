@@ -23,12 +23,13 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeNotifier>(
       builder: (context, theme, child) => LocaleBuilder(
         builder: (locale) => GetMaterialApp(
+          // smartManagement: SmartManagement.keepFactory,
           title: 'Onicent',
           localizationsDelegates: Locales.delegates,
           supportedLocales: Locales.supportedLocales,
           locale: locale,
           theme: theme.getTheme(),
-          home: SplashScreen(),
+          home: const SplashScreen(),
         ),
       ),
     );

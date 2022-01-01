@@ -19,11 +19,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       appBar: AppBar(
         title: Text(Locales.string(context, 'password_recovery')),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
 
       body: Column(
         children: [
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(

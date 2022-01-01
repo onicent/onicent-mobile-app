@@ -15,6 +15,8 @@ class TextFieldInput extends StatefulWidget {
 
   final double borderRadius;
   final bool enabled;
+  final Function(String)? onChanged;
+  final TextInputType? keyboardType;
 
   TextFieldInput({
     Key? key,
@@ -22,7 +24,6 @@ class TextFieldInput extends StatefulWidget {
     this.hintText,
     this.obscureText = false,
     this.controller,
-
     this.borderRadius = 50.0,
     this.leading,
     this.leadingWidth,
@@ -31,7 +32,8 @@ class TextFieldInput extends StatefulWidget {
     this.trailingWidth,
     this.trailingBackground,
     this.enabled = true,
-
+    this.onChanged,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
@@ -43,10 +45,8 @@ class _TextFieldInputState extends State<TextFieldInput> {
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       height: 48.0,
-
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         border: Border.all(color: Theme.of(context).dividerColor, width: 1.2),
@@ -67,7 +67,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
             ),
             child: widget.leading,
           ),
-          widget.leading != null ? SizedBox(width: 10.0): SizedBox(width: 0.0),
+          widget.leading != null ? SizedBox(width: 10.0) : SizedBox(width: 0.0),
           Flexible(
             child: Container(
               decoration: BoxDecoration(
@@ -76,15 +76,15 @@ class _TextFieldInputState extends State<TextFieldInput> {
               child: TextField(
                 // textAlignVertical: TextAlignVertical.center,
                 // textAlign: TextAlign.left,
-enabled: widget.enabled,
+                keyboardType: widget.keyboardType,
+                onChanged: widget.onChanged,
+                enabled: widget.enabled,
                 obscureText:
                     widget.obscureText ? _isObscure : widget.obscureText,
                 style: const TextStyle(fontSize: 16.0),
                 maxLines: 1,
                 decoration: InputDecoration(
-
                   contentPadding: EdgeInsets.all(0.0),
-
                   hintMaxLines: 1,
                   border: InputBorder.none,
                   hintText: widget.hintText,
@@ -93,7 +93,6 @@ enabled: widget.enabled,
               ),
             ),
           ),
-
           Container(
             height: double.infinity,
             width: widget.trailingWidth,
@@ -110,25 +109,26 @@ enabled: widget.enabled,
                 SizedBox(child: widget.trailing),
                 widget.obscureText
                     ? InkWell(
-                  onTap: () {
-                    setState(() {
-                      _isObscure = !_isObscure;
-                    });
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 10.0),
-                    child: Icon(
-                      _isObscure ? Icons.visibility : Icons.visibility_off,
-                      size: 25.0,
-                      color: Colors.grey,
-                    ),
-                  ),
-                )
+                        onTap: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 10.0),
+                          child: Icon(
+                            _isObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            size: 25.0,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      )
                     : Container(width: 5.0),
               ],
             ),
           ),
-
         ],
       ),
     );
@@ -149,8 +149,7 @@ class _TextFieldTypeAState extends State<TextFieldTypeA> {
       padding: EdgeInsets.symmetric(horizontal: 15.0),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(
-              color: Color(0xFFEFF2F6), width: 1.0)),
+          border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
       child: Row(
         children: [
           InkWell(
@@ -190,9 +189,7 @@ class _TextFieldTypeAState extends State<TextFieldTypeA> {
   }
 }
 
-
 class TextFieldTypeC extends StatefulWidget {
-  
   const TextFieldTypeC({Key? key}) : super(key: key);
 
   @override
@@ -205,5 +202,3 @@ class _TextFieldTypeCState extends State<TextFieldTypeC> {
     return Container();
   }
 }
-
-
