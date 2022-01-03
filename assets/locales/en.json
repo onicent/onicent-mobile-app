@@ -26,6 +26,8 @@
   "please_input_full_name": "Please enter your full name",
   "input_full_name": "Enter your full name",
   "using_phone_or_mail": "Use phone number or Email.",
+  "using_phone": "Use phone number",
+  "using_email": "Use email",
   "phone": "Phone number",
   "title_confirm": "Verify phone number",
   "content_text_confirm": "Please enter the 5-digit verification code sent to the phone number",

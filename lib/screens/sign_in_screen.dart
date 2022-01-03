@@ -193,7 +193,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.of(context).push(createRoute(const SignUpScreen()));
+                      Navigator.of(context).push(createRoute(SignUpScreen()));
                     },
                     child: Text(
                       Locales.string(context, 'sign_up'),

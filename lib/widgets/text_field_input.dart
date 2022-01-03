@@ -17,6 +17,8 @@ class TextFieldInput extends StatefulWidget {
   final bool enabled;
   final Function(String)? onChanged;
   final TextInputType? keyboardType;
+  TextAlign textAlign;
+  TextStyle? hintStyle;
 
   TextFieldInput({
     Key? key,
@@ -34,11 +36,16 @@ class TextFieldInput extends StatefulWidget {
     this.enabled = true,
     this.onChanged,
     this.keyboardType,
+    this.textAlign = TextAlign.start,
+    this.hintStyle,
   }) : super(key: key);
 
+
   @override
-  State<TextFieldInput> createState() => _TextFieldInputState();
+  _TextFieldInputState createState() => _TextFieldInputState();
 }
+
+
 
 class _TextFieldInputState extends State<TextFieldInput> {
   bool _isObscure = true;
@@ -46,7 +53,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48.0,
+      height: 50.0,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6.0),
         border: Border.all(color: Theme.of(context).dividerColor, width: 1.2),
@@ -57,7 +64,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
           Container(
             height: double.infinity,
             width: widget.leadingWidth,
-            padding: EdgeInsets.only(left: 20.0),
+            padding: EdgeInsets.only(left: 15.0),
             decoration: BoxDecoration(
               color: widget.leadingBackground,
               borderRadius: BorderRadius.only(
@@ -76,11 +83,12 @@ class _TextFieldInputState extends State<TextFieldInput> {
               child: TextField(
                 // textAlignVertical: TextAlignVertical.center,
                 // textAlign: TextAlign.left,
+                textAlign: widget.textAlign,
                 keyboardType: widget.keyboardType,
                 onChanged: widget.onChanged,
                 enabled: widget.enabled,
                 obscureText:
-                    widget.obscureText ? _isObscure : widget.obscureText,
+                widget.obscureText ? _isObscure : widget.obscureText,
                 style: const TextStyle(fontSize: 16.0),
                 maxLines: 1,
                 decoration: InputDecoration(
@@ -88,6 +96,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
                   hintMaxLines: 1,
                   border: InputBorder.none,
                   hintText: widget.hintText,
+                  hintStyle: widget.hintStyle,
                 ),
                 controller: widget.controller,
               ),
@@ -96,7 +105,7 @@ class _TextFieldInputState extends State<TextFieldInput> {
           Container(
             height: double.infinity,
             width: widget.trailingWidth,
-            padding: EdgeInsets.only(right: 20.0),
+            padding: EdgeInsets.only(right: 15.0),
             decoration: BoxDecoration(
               color: widget.trailingBackground,
               borderRadius: BorderRadius.only(
@@ -109,22 +118,22 @@ class _TextFieldInputState extends State<TextFieldInput> {
                 SizedBox(child: widget.trailing),
                 widget.obscureText
                     ? InkWell(
-                        onTap: () {
-                          setState(() {
-                            _isObscure = !_isObscure;
-                          });
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 10.0),
-                          child: Icon(
-                            _isObscure
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                            size: 25.0,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      )
+                  onTap: () {
+                    setState(() {
+                      _isObscure = !_isObscure;
+                    });
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(left: 10.0),
+                    child: Icon(
+                      _isObscure
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      size: 25.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                )
                     : Container(width: 5.0),
               ],
             ),
@@ -135,70 +144,5 @@ class _TextFieldInputState extends State<TextFieldInput> {
   }
 }
 
-class TextFieldTypeA extends StatefulWidget {
-  const TextFieldTypeA({Key? key}) : super(key: key);
 
-  @override
-  State<TextFieldTypeA> createState() => _TextFieldTypeAState();
-}
 
-class _TextFieldTypeAState extends State<TextFieldTypeA> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15.0),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.0),
-          border: Border.all(color: Color(0xFFEFF2F6), width: 1.0)),
-      child: Row(
-        children: [
-          InkWell(
-            child: Row(
-              children: [
-                Image.asset(
-                  'assets/icons/crypto/Ripple-icon.png',
-                  width: 22.0,
-                ),
-                SizedBox(width: 5.0),
-                Text('BTC'),
-                SizedBox(width: 5.0),
-                Icon(
-                  Icons.expand_more,
-                  size: 20.0,
-                ),
-                SizedBox(width: 5.0),
-                Container(
-                  color: Color(0xFFEFF2F6),
-                  width: 1.0,
-                  height: 30.0,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 5.0),
-          Flexible(
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class TextFieldTypeC extends StatefulWidget {
-  const TextFieldTypeC({Key? key}) : super(key: key);
-
-  @override
-  _TextFieldTypeCState createState() => _TextFieldTypeCState();
-}
-
-class _TextFieldTypeCState extends State<TextFieldTypeC> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
-}

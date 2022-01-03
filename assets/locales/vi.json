@@ -25,6 +25,8 @@
   "please_input_full_name": "Vui lòng nhập họ tên đầy đủ",
   "input_full_name": "Nhập họ tên đầy đủ",
   "using_phone_or_mail": "Sử dụng số điện thoại hoặc E-mail.",
+  "using_phone": "Sử dụng số điện thoại",
+  "using_email": "Sử dụng email",
   "phone": "Số điện thoại",
   "title_confirm": "Xác thực số điện thoại",
   "content_text_confirm": "Hãy nhập mã xác minh 5 chữ số đã được gửi đến số điện thoại",
