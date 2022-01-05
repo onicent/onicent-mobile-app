@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:onicent/models/sign_up/list_of_country_model.dart';
 import 'package:onicent/screens/sign_in_screen.dart';
 import 'package:onicent/services/api/sign_up/sign_up.dart';
 import 'package:timer_count_down/timer_controller.dart';
-
 import '../utilities/locales/flutter_locales.dart';
 import '../widgets/widgets.dart';
 import '../controllers/sign_up_controller.dart';
@@ -14,13 +11,16 @@ import '../controllers/sign_up_controller.dart';
 import 'package:timer_count_down/timer_count_down.dart';
 
 class SignUpScreen extends StatelessWidget {
-  SignUpScreen({Key? key}) : super(key: key);
-
+  // Call use signUpController
+  SignUpController signUpController = Get.put(SignUpController());
   // Call and use DataSignUp controller
   _SignUpData signUpData = Get.put(_SignUpData()); // Store country to class
 
   void nextScreen() {
+    // Remove all data store in state signUpData
     signUpData.clear();
+    // Reload new data country
+    signUpController.fetchCountry();
     Get.to(_ChooseCountry());
   }
 
@@ -35,6 +35,7 @@ class SignUpScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          
           Text(
             Locales.string(context, 'title_fist_screen_sign_up'),
             style: const TextStyle(fontSize: 22.0, fontWeight: FontWeight.w600),
@@ -157,18 +158,25 @@ class _InputName extends StatelessWidget {
   // Function disable tab button if do not input text from field
   void onChangedText(String text) {
     // Replace all space in string
-    String result = text.replaceAll(RegExp(' +'), '');
+    // String result = text.replaceAll(RegExp(' +'), '');
+    String result = text.removeAllWhitespace;
+
+    String txt = text.replaceAll(RegExp(' +'), ' ');
+
 
     if (result != '' && result.length > 2) {
       // text.replaceAll(' ', '');
       isButtonDisabled.value = false;
     } else {
+      print(txt);
       isButtonDisabled.value = true;
     }
   }
 
   // Function set country and next screen
   void nextScreen() {
+
+
     // Set full name to class data
     signUpData.fullName.value = fullName!.text;
     Get.to(() => _SignUp());
@@ -317,6 +325,61 @@ class _SignUp extends StatelessWidget {
           ),
           const SizedBox(
             height: 40.0,
+          ),
+          Container(
+            padding: EdgeInsets.all(4.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5.0),
+              color: Get.theme.dividerColor,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    child: Container(
+                      height: 35,
+                      margin: EdgeInsets.only(right: 2.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Get.theme.backgroundColor,
+                      ),
+                      child: Center(
+                        child: Text('Phone',
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                Expanded(
+                  flex: 1,
+                  child: InkWell(
+                    child: Container(
+                      height: 35,
+                      margin: EdgeInsets.only(left: 2.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5.0),
+                        color: Colors.transparent,
+                      ),
+                      child: Center(
+                        child: Text('E-mail',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ),
+              ],
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,

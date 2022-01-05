@@ -22,7 +22,7 @@ class SignUpController extends GetxController {
   }
 
   Future<List<ListOfCountryModel>> getDataJson() async {
-    await Future.delayed(Duration(seconds: 1));
+    // await Future.delayed(Duration(seconds: 1));
 
     String data =
         await rootBundle.loadString('assets/data/list_of_countries.json');
